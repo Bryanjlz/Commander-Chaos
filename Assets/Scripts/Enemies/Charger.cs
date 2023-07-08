@@ -30,6 +30,8 @@ public class Charger : Enemy {
 		if (!isCharging) {
 			SetTarget(player.transform.position);
 		}
+
+		// Move
 		rb.AddForce(unitVel * speed);
 		if (rb.velocity.magnitude >= speed) {
 			rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
@@ -63,6 +65,5 @@ public class Charger : Enemy {
 
 	public override void CheckCollisions() {
 		base.CheckCollisions();
-		print("yooo");
 	}
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
-	private readonly float X_POS_MAX = 10;
-	private readonly float Y_POS_MAX = 6;
+	private readonly float X_POS_MAX = 19;
+	private readonly float Y_POS_MAX = 11;
 
 	[SerializeField] //TODO: DEBUG, DELETE LATER
 	protected int health = 1;
@@ -79,6 +79,8 @@ public abstract class Enemy : MonoBehaviour {
 				health -= 1;
 			} else if (isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
+			} else if (collision.gameObject.tag == "Death") {
+				health = 0;
 			} else {
 				Debug.Log(collision);
 			}
