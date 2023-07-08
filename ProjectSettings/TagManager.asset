@@ -7,6 +7,8 @@ TagManager:
   - Danger
   - Selection
   - Death
+  - Enemy
+  - Zone
   layers:
   - Default
   - TransparentFX

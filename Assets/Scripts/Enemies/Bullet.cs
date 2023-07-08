@@ -25,7 +25,13 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collision) {
 		// TODO: should bullets destroy other bullets?
-		if (parent == null || collision.gameObject != parent) {
+
+		// don't hit zones or selection
+		if (collision.tag == "Zone" || collision.tag == "Selection") {
+			return;
+		}
+		// don't hit the enemy spawning the bullet
+		if ((parent == null || collision.gameObject != parent)) {
 			hit = true;
 		}
 	}
