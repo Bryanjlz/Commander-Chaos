@@ -100,7 +100,7 @@ public abstract class Enemy : MonoBehaviour {
 
 	public virtual void CheckCollisions() {
 		foreach (Collider2D collision in collisions) {
-			if (collision.gameObject.tag == "Danger" || collision.gameObject.tag == "Player") {
+			if (collision.tag == "Danger" || collision.tag == "Player") {
 				health -= 1;
 			} else if (isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
