@@ -18,7 +18,7 @@ public abstract class Enemy : MonoBehaviour {
 	protected GameController gameRef;
 
 	[SerializeField]
-	private List<Collider2D> collisions;
+	protected List<Collider2D> collisions;
 
 	protected void SetSpawnPoint() {
 		int side = Random.Range(0, 4);

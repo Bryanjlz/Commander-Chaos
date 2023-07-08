@@ -61,8 +61,4 @@ public class Charger : Enemy {
 		gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
 		CheckCollisions();
 	}
-
-	public override void CheckCollisions() {
-		base.CheckCollisions();
-	}
 }

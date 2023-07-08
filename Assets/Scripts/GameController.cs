@@ -92,6 +92,10 @@ public class GameController : MonoBehaviour {
 				Charger charger = enemy.GetComponent<Charger>();
 				charger.Setup(player, this);
 				break;
+			case EnemyType.BASIC_SHOOTER:
+				BasicShooter basicShooter = enemy.GetComponent<BasicShooter>();
+				basicShooter.Setup(player, this);
+				break;
 		}
 	}
 
