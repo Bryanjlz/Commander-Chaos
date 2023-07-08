@@ -5,27 +5,27 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    public GameController gameRef;
+	public GameController gameRef;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+	// Update is called once per frame
+	void Update()
+	{
+	}
 
-    void Kill()
-    {
-        gameRef.onPlayerKill();
-    }
+	void Kill()
+	{
+		gameRef.onPlayerKill();
+	}
 
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        this.Kill();
-    }
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+		Kill();
+	}
 }

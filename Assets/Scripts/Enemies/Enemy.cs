@@ -4,26 +4,40 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
-	int health;
+	protected int health = 1;
 
-	[SerializeField]
+	[SerializeField] //TODO: DELETE LATER
 	bool isSelected;
 
+	[SerializeField] //TODO: DELETE LATER
+	bool isInteractable;
+
+	public GameController gameRef;
+
 	void Update() {
-		if (health == 0) {
+		if (health <= 0) {
 			Kill();
 		}
 
-		if (isSelected && Input.GetKeyDown("space")) {
-			Activate();
+		if (isInteractable && isSelected && Input.GetKeyDown("space")) {
+			PlayerActivate();
 		}
 		DefaultBehaviour();
 	}
+
 	public abstract void DefaultBehaviour();
 
-	public abstract void Activate();
+	public abstract void PlayerActivate();
 
-	public void Kill() {
-		Destroy(gameObject);
+	public abstract void ZoneActivate();
+
+	void Kill() {
+		gameRef.onEnemyKill(this);
+	}
+
+	public virtual void OnTriggerEnter2D(Collider2D collision) {
+		if (collision.gameObject.tag == "Danger" || collision.gameObject.tag == "Player") {
+			health -= 1;
+		}
 	}
 }

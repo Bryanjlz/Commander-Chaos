@@ -5,47 +5,49 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
 
-    // References to everything
-    public Player player;
-    public List<GameObject> enemies;
+	// References to everything
+	public Player player;
+	public List<Enemy> enemies;
 
-    public int enemiesLeft;
+	public int enemiesLeft;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (enemies == null)
-        {
-            enemies = new List<GameObject>();
-        }
-        // set everything's gameref to this, just in case
-        player.gameRef = this;
-        foreach (GameObject e in enemies)
-        {
-            //...
-        }
-    }
+	// Start is called before the first frame update
+	void Start()
+	{
+		if (enemies == null)
+		{
+			enemies = new List<Enemy>();
+		}
+		// set everything's gameref to this, just in case
+		player.gameRef = this;
+		foreach (Enemy e in enemies)
+		{
+			e.gameRef = this;
+		}
+	}
 
-    // Update is called once per frame
-    void Update()
-    {      
-    }
+	// Update is called once per frame
+	void Update()
+	{      
+	}
 
-    public void onPlayerKill()
-    {
-        // Popup a loss screen or something
-        // For now, crash the game
-        int x = 0;
-        x /= 0;
-    }
+	public void onPlayerKill()
+	{
+		// Popup a loss screen or something
+		// For now, crash the game
+		int x = 0;
+		x /= 0;
+	}
 
-    public void onEnemyKill()
-    {
-        --enemiesLeft;
-        if (enemiesLeft == 0)
-        {
-            // Win the game or level if we're doing that
-        }
-    }
+	public void onEnemyKill(Enemy e)
+	{
+		enemies.Remove(e);
+		Destroy(e.gameObject);
+		--enemiesLeft;
+		if (enemiesLeft == 0)
+		{
+			// Win the game or level if we're doing that
+		}
+	}
 
 }
