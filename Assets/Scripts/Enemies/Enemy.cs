@@ -17,6 +17,9 @@ public abstract class Enemy : MonoBehaviour {
 
 	protected GameController gameRef;
 
+	[SerializeField]
+	private List<Collider2D> collisions;
+
 	protected void SetSpawnPoint() {
 		int side = Random.Range(0, 4);
 		switch(side) {
@@ -61,25 +64,32 @@ public abstract class Enemy : MonoBehaviour {
 		gameRef.onEnemyKill(this);
 	}
 
-	public virtual void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.gameObject.tag == "Danger" || collision.gameObject.tag == "Player") {
-			health -= 1;
-		} else if (collision.gameObject.tag == "Selection")
-		{
-			isSelected = true;
-		} else
-		{
-			Debug.Log(collision);
+	void OnTriggerEnter2D(Collider2D collision) {
+		collisions.Add(collision);
+		CheckCollisions();
+	}
+
+	void OnTriggerExit2D(Collider2D collision) {
+		collisions.Remove(collision);
+	}
+
+	public virtual void CheckCollisions() {
+		foreach (Collider2D collision in collisions) {
+			if (collision.gameObject.tag == "Danger" || collision.gameObject.tag == "Player") {
+				health -= 1;
+			} else if (isInteractable && collision.gameObject.tag == "Selection") {
+				isSelected = true;
+			} else {
+				Debug.Log(collision);
+			}
 		}
 	}
 
-	public void OnMouseEnter()
-	{
+	public void OnMouseEnter() {
 		isHovered = true;
 	}
 
-	public void OnMouseExit()
-	{
+	public void OnMouseExit() {
 		isHovered = false;
 	}
 }
