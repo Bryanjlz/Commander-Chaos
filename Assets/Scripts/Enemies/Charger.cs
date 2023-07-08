@@ -54,7 +54,7 @@ public class Charger : Enemy {
 
 	public override void ZoneActivate() {
 		speed = 5;
-		rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
+		rb.velocity = unitVel * speed;
 		isInteractable = false;
 		transform.tag = "Danger";
 		gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
