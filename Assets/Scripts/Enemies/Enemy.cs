@@ -25,16 +25,31 @@ public abstract class Enemy : MonoBehaviour {
 	bool isHovered;
 	public bool isSelected;
 
-	protected GameController gameRef;
+	protected bool isActivated = false;
+    protected bool isZoneActivated = false;
+    protected GameController gameRef;
 
 	[SerializeField]
 	protected List<Collider2D> collisions;
 
-	public virtual void Setup(Player player, GameController gameRef) {
+	// Borders and particles
+    protected SpriteRenderer borderRenderer;
+
+    [SerializeField]
+    protected ParticleSystem deathParticles;
+
+    public void Start()
+    {
+		// the first is its own sprite renderer, the second index is the border which is its child (hence why index [1])
+        borderRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>()[1];
+        borderRenderer.enabled = false;
+    }
+
+    public virtual void Setup(Player player, GameController gameRef) {
 		SetSpawnPoint();
 		this.player = player;
 		this.gameRef = gameRef;
-	}
+    }
 
 		protected void SetSpawnPoint() {
 		int side = Random.Range(0, 4);
@@ -56,19 +71,44 @@ public abstract class Enemy : MonoBehaviour {
 
 	void Update() {
 		if (health <= 0) {
-			Kill();
+			if (deathParticles != null)
+			{
+                Instantiate(deathParticles, transform.position, Quaternion.identity);
+            }
+            Kill();
 		}
 
 		if (isInteractable && isSelected && Input.GetKeyDown("space")) {
-			PlayerActivate();
-		}
+            isActivated = true;
+            PlayerActivate();
+        }
 
 		// Monkey deselect/select
 		if (Input.GetMouseButtonDown(0)) {
-			isSelected = isHovered;
+            isSelected = isHovered;
 		}
 		DefaultBehaviour();
-	}
+
+		// Borders
+		if (borderRenderer != null)
+		{
+            if (isSelected)
+            {
+                if (isActivated || isZoneActivated)
+                {
+                    borderRenderer.enabled = false;
+                }
+                else
+                {
+                    borderRenderer.enabled = true;
+                }
+            }
+            else
+            {
+                borderRenderer.enabled = false;
+            }
+		}
+    }
 
 	public abstract void DefaultBehaviour();
 
@@ -76,9 +116,14 @@ public abstract class Enemy : MonoBehaviour {
 
 	public abstract void ZoneActivate();
 
-	void Kill() {
-		gameRef.onEnemyKill(this);
+	public void SetZoneActivated()
+	{
+		isZoneActivated = true;
 	}
+
+	void Kill() {
+        gameRef.onEnemyKill(this);
+    }
 	public virtual void SetTarget(Vector3 target) {
 		// set direction
 		Vector2 deltaPos = target - transform.position;
