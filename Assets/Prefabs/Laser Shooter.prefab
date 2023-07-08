@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 4962929799578990523}
   - component: {fileID: 6607446400832695044}
   - component: {fileID: 5300800594352824525}
+  - component: {fileID: 5457410331419523904}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Danger
@@ -265,6 +266,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9996857, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &5457410331419523904
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177315724487834815}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &6967687683188274498
 GameObject:
   m_ObjectHideFlags: 0
