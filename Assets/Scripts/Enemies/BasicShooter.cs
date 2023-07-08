@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Charger : Enemy {
+public class BasicShooter : Enemy {
 	public Player player;
 
 	[SerializeField]
 	float speed = 1;
 	private float angle;
 
-	[SerializeField]
 	private Rigidbody2D rb;
 	private Vector2 unitVel;
 
-	private bool isCharging;
+	private GameObject bulletPrefab;
 
 	public void Setup(Player player, GameController gameRef) {
 		SetSpawnPoint();
 		health = 1;
 		isInteractable = true;
-		isCharging = false;
 		this.player = player;
 		this.gameRef = gameRef;
 	}
 
 	public override void DefaultBehaviour() {
-		// Set Target to middle
-		if (!isCharging) {
-			SetTarget(player.transform.position);
-		}
+		SetTarget(player.transform.position);
 
 		// Move
 		rb.AddForce(unitVel * speed);
@@ -37,7 +32,7 @@ public class Charger : Enemy {
 		}
 	}
 
-	public void SetTarget (Vector3 target) {
+	public void SetTarget(Vector3 target) {
 		// set direction
 		Vector2 deltaPos = target - transform.position;
 		unitVel = deltaPos / deltaPos.magnitude;
@@ -48,18 +43,11 @@ public class Charger : Enemy {
 	}
 
 	public override void PlayerActivate() {
-		isCharging = true;
 		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
 		ZoneActivate();
 	}
 
 	public override void ZoneActivate() {
-		speed = 5;
-		rb.velocity = unitVel * speed;
-		isInteractable = false;
-		transform.tag = "Danger";
-		gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
-		CheckCollisions();
 	}
 
 	public override void CheckCollisions() {
