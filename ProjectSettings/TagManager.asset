@@ -8,6 +8,7 @@ TagManager:
   - Selection
   - Death
   - Enemy
+  - Zone
   layers:
   - Default
   - TransparentFX
