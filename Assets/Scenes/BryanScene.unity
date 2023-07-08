@@ -235,6 +235,9 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6082422220084629207, guid: 0097f96f9ecd6b647b89875e6e0c0883, type: 3}
   - {fileID: 3451666499490398099, guid: 3de42f81ea4aaf14ca82962fceb912a4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 7643051329015321963, guid: 77d6441a3184e0c4a9da8852f3e237c1, type: 3}
   gameOverScreen: {fileID: 851705555}
   enemiesLeft: 0
   timeStart: 0

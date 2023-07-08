@@ -86,17 +86,15 @@ public class GameController : MonoBehaviour {
 
 	public void SpawnEnemy(EnemyType enemyType) {
 		print(Time.time - timeStart + " " + enemyType);
-		GameObject enemy = Instantiate(enemyPrefabs[(int)enemyType]);
-		switch(enemyType) {
-			case EnemyType.CHARGER:
-				Charger charger = enemy.GetComponent<Charger>();
-				charger.Setup(player, this);
-				break;
-			case EnemyType.BASIC_SHOOTER:
-				BasicShooter basicShooter = enemy.GetComponent<BasicShooter>();
-				basicShooter.Setup(player, this);
-				break;
+		GameObject enemyObj = Instantiate(enemyPrefabs[(int)enemyType]);
+
+		Enemy enemy = enemyObj.GetComponent<Enemy>();
+		enemy.Setup(player, this);
+
+		switch (enemyType) {
+			// Add cases for special Setup calls
 		}
+		currentEnemies.Add(enemy);
 	}
 
 	public void onPlayerKill() {
@@ -108,6 +106,7 @@ public class GameController : MonoBehaviour {
 		Destroy(e.gameObject);
 		--enemiesLeft;
 		if (enemiesLeft == 0) {
+			print("hurrahh");
 			// Win the game or level if we're doing that
 		}
 	}

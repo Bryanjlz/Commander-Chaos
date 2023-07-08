@@ -33,8 +33,7 @@ public class Charger : Enemy {
 		speed = 5;
 		rb.velocity = unitVel * speed;
 		isInteractable = false;
-		transform.tag = "Danger";
-		gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
+		transform.GetChild(0).gameObject.SetActive(true);
 		CheckCollisions();
 	}
 }
