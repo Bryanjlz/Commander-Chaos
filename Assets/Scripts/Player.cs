@@ -26,6 +26,9 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		Kill();
+		if (collision.gameObject.tag != "Selection")
+		{
+			Kill();
+		}
 	}
 }
