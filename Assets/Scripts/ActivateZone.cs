@@ -6,7 +6,8 @@ public class ActivateZone : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == "Enemy") {
-			collision.gameObject.GetComponent<Enemy>().ZoneActivate();
+			collision.gameObject.GetComponent<Enemy>().SetZoneActivated();
+            collision.gameObject.GetComponent<Enemy>().ZoneActivate();
 		}
 	}
 }
