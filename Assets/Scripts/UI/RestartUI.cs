@@ -21,4 +21,9 @@ public class RestartUI : MonoBehaviour
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
+
+	public void GoBack()
+	{
+		SceneManager.LoadScene("Start");
+	}
 }
