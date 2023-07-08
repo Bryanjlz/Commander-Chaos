@@ -253,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00015714765, y: 0}
+  m_Offset: {x: 0.00017923117, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -264,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9996857, y: 1}
+  m_Size: {x: 0.99964154, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &5457410331419523904
 Rigidbody2D:
@@ -274,8 +274,8 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4177315724487834815}
-  m_BodyType: 1
-  m_Simulated: 1
+  m_BodyType: 2
+  m_Simulated: 0
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 6809045438555177311}
   m_Layer: 0
   m_Name: Laser Shooter
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,12 +420,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable: 1
-  health: 5
+  health: 1
   speed: 1
   rb: {fileID: 5575259226151298398}
   isHovered: 0
   isSelected: 0
   collisions: []
+  deathParticles: {fileID: 0}
   laser: {fileID: 6607446400832695044}
   laserRange: 8
   laserChargeTime: 3

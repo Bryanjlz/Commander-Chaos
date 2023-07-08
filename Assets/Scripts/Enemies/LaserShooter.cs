@@ -15,10 +15,23 @@ public class LaserShooter : Enemy {
 	float laserSustainTime;
 	private bool startLaser;
 	private float laserStartTime;
+	private Vector3 laserTarget;
 
 	public override void Setup(Player player, GameController gameRef) {
 		base.Setup(player, gameRef);
 		laser.Setup(laserSustainTime, laserChargeTime);
+		laserTarget = player.transform.position;
+	}
+
+	public override void SetTarget(Vector3 target) {
+		// set direction
+		Vector2 deltaPos = target - transform.position;
+		unitVel = deltaPos / deltaPos.magnitude;
+
+		Vector3 VectorToTarget = laserTarget - transform.position;
+		Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * VectorToTarget;
+		Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
+		transform.rotation = targetRotation;
 	}
 
 	public override void DefaultBehaviour() {
@@ -52,7 +65,7 @@ public class LaserShooter : Enemy {
 	}
 
 	public override void PlayerActivate() {
-		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
+		laserTarget = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
 	}
 
 	public override void ZoneActivate() {

@@ -129,15 +129,8 @@ public abstract class Enemy : MonoBehaviour {
 		Vector2 deltaPos = target - transform.position;
 		unitVel = deltaPos / deltaPos.magnitude;
 
-		// vector from this object towards the target location
-		Vector3 vectorToTarget = player.transform.position - transform.position;
-		// rotate that vector by 90 degrees around the Z axis
-		Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * vectorToTarget;
-
-		// get the rotation that points the Z axis forward, and the Y axis 90 degrees away from the target
-		// (resulting in the X axis facing the target)
+		Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * deltaPos;
 		Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-
 		transform.rotation = targetRotation;
 	}
 
