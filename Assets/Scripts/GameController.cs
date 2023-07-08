@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour {
 	// References to everything
 	public Player player;
 	public List<Enemy> enemies;
+	public GameObject gameOverScreen;
 
 	public int enemiesLeft;
 
@@ -27,8 +28,8 @@ public class GameController : MonoBehaviour {
 	public void onPlayerKill() {
 		// Popup a loss screen or something
 		// For now, crash the game
-		int x = 0;
-		x /= 0;
+
+		gameOverScreen.SetActive(true);
 	}
 
 	public void onEnemyKill(Enemy e) {
