@@ -32,7 +32,8 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected List<Collider2D> collisions;
 
-	// Borders and particles
+    // Borders and particles
+    [SerializeField]
     protected SpriteRenderer borderRenderer;
 
     [SerializeField]
@@ -40,9 +41,10 @@ public abstract class Enemy : MonoBehaviour {
 
     public void Start()
     {
-		// the first is its own sprite renderer, the second index is the border which is its child (hence why index [1])
-        borderRenderer = gameObject.GetComponentsInChildren<SpriteRenderer>()[1];
-        borderRenderer.enabled = false;
+        if (borderRenderer != null)
+		{
+            borderRenderer.enabled = false;
+        }
     }
 
     public virtual void Setup(Player player, GameController gameRef) {
