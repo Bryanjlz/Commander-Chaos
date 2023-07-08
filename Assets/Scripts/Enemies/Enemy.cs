@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour {
+	// For spawning
 	private readonly float X_POS_MAX = 19;
 	private readonly float Y_POS_MAX = 11;
 
-	[SerializeField] //TODO: DEBUG, DELETE LATER
-	protected int health = 1;
-
-	[SerializeField] //TODO: DEBUG, DELETE LATER
+	// Set in editor
+	[SerializeField]
 	protected bool isInteractable;
+	[SerializeField]
+	protected int health;
+
+	// Move variables
+	protected Player player;
+	[SerializeField]
+	protected float speed = 1;
+	[SerializeField]
+	protected Rigidbody2D rb;
+	protected Vector2 unitVel;
+
 	[SerializeField] //TODO: DELETE LATER
 	bool isHovered;
 	public bool isSelected;
@@ -20,7 +30,13 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected List<Collider2D> collisions;
 
-	protected void SetSpawnPoint() {
+	public virtual void Setup(Player player, GameController gameRef) {
+		SetSpawnPoint();
+		this.player = player;
+		this.gameRef = gameRef;
+	}
+
+		protected void SetSpawnPoint() {
 		int side = Random.Range(0, 4);
 		switch(side) {
 			case 0:
@@ -62,6 +78,15 @@ public abstract class Enemy : MonoBehaviour {
 
 	void Kill() {
 		gameRef.onEnemyKill(this);
+	}
+	public virtual void SetTarget(Vector3 target) {
+		// set direction
+		Vector2 deltaPos = target - transform.position;
+		unitVel = deltaPos / deltaPos.magnitude;
+
+		// rotate to face target
+		float angle = Mathf.Atan(deltaPos.y / deltaPos.x);
+		transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Rad2Deg * angle);
 	}
 
 	void OnTriggerEnter2D(Collider2D collision) {

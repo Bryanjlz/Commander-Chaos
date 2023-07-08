@@ -175,13 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af6be37239590a438d219d4b8627d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInteractable: 1
   health: 1
-  isInteractable: 0
+  speed: 1
+  rb: {fileID: 7239406462258756729}
   isHovered: 0
   isSelected: 0
   collisions: []
   bulletPrefab: {fileID: 6256043091352135407, guid: 3e7322ea5d1717a448a70b0c83ad8c7c, type: 3}
-  player: {fileID: 0}
-  speed: 1
-  rb: {fileID: 7239406462258756729}
-  unitVel: {x: 0, y: 0}

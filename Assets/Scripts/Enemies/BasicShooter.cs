@@ -5,25 +5,10 @@ using UnityEngine;
 public class BasicShooter : Enemy {
 	[SerializeField]
 	private GameObject bulletPrefab;
-	public Player player;
-
-	[SerializeField]
-	float speed = 1;
-	private float angle;
-
-	[SerializeField]
-	private Rigidbody2D rb;
-	[SerializeField]
-	private Vector2 unitVel;
 	List<GameObject> myBullets;
 
-	public void Setup(Player player, GameController gameRef) {
-		SetSpawnPoint();
-		health = 1;
-		isInteractable = true;
-		this.player = player;
-		this.gameRef = gameRef;
-
+	public override void Setup(Player player, GameController gameRef) {
+		base.Setup(player, gameRef);
 		myBullets = new List<GameObject>();
 	}
 
@@ -37,16 +22,6 @@ public class BasicShooter : Enemy {
 		}
 	}
 
-	public void SetTarget(Vector3 target) {
-		// set direction
-		Vector2 deltaPos = target - transform.position;
-		unitVel = deltaPos / deltaPos.magnitude;
-
-		// rotate to face target
-		angle = Mathf.Atan(deltaPos.y / deltaPos.x);
-		transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Rad2Deg * angle);
-	}
-
 	public override void PlayerActivate() {
 		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
 		ZoneActivate();
@@ -56,6 +31,7 @@ public class BasicShooter : Enemy {
 		GameObject bullet = Instantiate(bulletPrefab);
 		bullet.GetComponent<Bullet>().Setup(gameObject, unitVel);
 		myBullets.Add(bullet);
+		health = 0;
 	}
 
 	public override void CheckCollisions() {
