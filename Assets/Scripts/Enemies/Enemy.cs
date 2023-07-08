@@ -34,16 +34,19 @@ public abstract class Enemy : MonoBehaviour {
 
     // Borders and particles
     [SerializeField]
-    protected SpriteRenderer borderRenderer;
+    protected SpriteRenderer[] borderRenderers;
 
     [SerializeField]
     protected ParticleSystem deathParticles;
 
     public void Start()
     {
-        if (borderRenderer != null)
+        if (borderRenderers.Length != 0)
 		{
-            borderRenderer.enabled = false;
+			for (int i = 0; i < borderRenderers.Length; i++)
+			{
+				borderRenderers[i].enabled = false;
+            }
         }
     }
 
@@ -92,22 +95,31 @@ public abstract class Enemy : MonoBehaviour {
 		DefaultBehaviour();
 
 		// Borders
-		if (borderRenderer != null)
+		if (borderRenderers.Length != 0)
 		{
             if (isSelected)
             {
                 if (isActivated || isZoneActivated)
                 {
-                    borderRenderer.enabled = false;
+                    for (int i = 0; i < borderRenderers.Length; i++)
+                    {
+                        borderRenderers[i].enabled = false;
+                    }
                 }
                 else
                 {
-                    borderRenderer.enabled = true;
+                    for (int i = 0; i < borderRenderers.Length; i++)
+                    {
+                        borderRenderers[i].enabled = true;
+                    }
                 }
             }
             else
             {
-                borderRenderer.enabled = false;
+                for (int i = 0; i < borderRenderers.Length; i++)
+                {
+                    borderRenderers[i].enabled = false;
+                }
             }
 		}
     }

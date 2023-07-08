@@ -267,6 +267,7 @@ MonoBehaviour:
   isHovered: 0
   isSelected: 0
   collisions: []
-  borderRenderer: {fileID: 2538285013223966485}
+  borderRenderers:
+  - {fileID: 2538285013223966485}
   deathParticles: {fileID: 3951109614342624886, guid: ae31783b94f561948b3478631bf09964, type: 3}
   bulletPrefab: {fileID: 6256043091352135407, guid: 3e7322ea5d1717a448a70b0c83ad8c7c, type: 3}
