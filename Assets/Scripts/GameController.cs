@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour {
 
 	public int enemiesLeft;
 
-	// Start is called before the first frame update
 	void Start() {
 		if (enemies == null) {
 			enemies = new List<Enemy>();
@@ -22,7 +21,7 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	void Update() {      
+	void Update() {
 	}
 
 	public void onPlayerKill() {
