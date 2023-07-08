@@ -86,6 +86,13 @@ public class GameController : MonoBehaviour {
 
 	public void SpawnEnemy(EnemyType enemyType) {
 		print(Time.time - timeStart + " " + enemyType);
+		GameObject enemy = Instantiate(enemyPrefabs[(int)enemyType]);
+		switch(enemyType) {
+			case EnemyType.CHARGER:
+				Charger charger = enemy.GetComponent<Charger>();
+				charger.Setup(player, this);
+				break;
+		}
 	}
 
 	public void onPlayerKill() {

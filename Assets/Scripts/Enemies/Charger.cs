@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Charger : Enemy {
-	[SerializeField] //TODO: DELETE LATER
-	Player player;
+	public Player player;
 
 	[SerializeField]
 	float speed = 1;
 
-	[SerializeField]
+	[SerializeField] // DEBUG, DELETE LATER
 	float angle;
+
+	public void Setup(Player player, GameController gameRef) {
+		SetSpawnPoint();
+		health = 1;
+		isInteractable = true;
+		this.player = player;
+		this.gameRef = gameRef;
+	}
+
 	public override void DefaultBehaviour() {
 		// move
 		Vector3 deltaPos = player.transform.position - transform.position;

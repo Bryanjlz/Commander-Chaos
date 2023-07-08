@@ -3,5 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EnemyType {
-	CHARGER = 0
+	CHARGER,
+	BASIC_SHOOTER,
+	LASER,
+	BOMB,
+	ASTEROID,
+	X_BOMB,
+	SHIELDER
 }
