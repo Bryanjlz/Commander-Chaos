@@ -89,9 +89,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void onPlayerKill() {
-		// Popup a loss screen or something
-		// For now, crash the game
-
 		gameOverScreen.SetActive(true);
 	}
 
