@@ -27,7 +27,6 @@ public class LaserBomb : Enemy {
 		target = FindTarget();
 
 		SetTarget(target);
-		laserStartTime = Time.time;
 
 		// random spin
 		rb.angularVelocity = Random.Range(30f, 60f) * Mathf.Pow(-1, Random.Range(0, 1));
@@ -39,7 +38,7 @@ public class LaserBomb : Enemy {
 		while (!foundTarget) {
 			targetPos = new Vector2(Random.Range(-10, 10), Random.Range(-4, 4));
 			Vector2 deltaVec = targetPos - (Vector2)transform.position;
-			RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(2, 1), 0f, deltaVec, deltaVec.magnitude, LayerMask.GetMask("Player"));
+			RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(3, 3), 0f, deltaVec, deltaVec.magnitude, LayerMask.GetMask("Player"));
 			if (!hit) {
 				foundTarget = true;
 			}
@@ -78,6 +77,7 @@ public class LaserBomb : Enemy {
 		startLaser = true;
 		speed = 0;
 		rb.velocity = Vector2.zero;
+		rb.totalForce = Vector2.zero;
 		laserStartTime = Time.time;
 		foreach (Laser laser in lasers) {
 			laser.StartLaser(laserStartTime);
@@ -85,7 +85,8 @@ public class LaserBomb : Enemy {
 	}
 
 	public override void PlayerActivate() {
-		laserChargeTime = laserChargeTime - (Time.time - laserStartTime);
+		laserChargeTime = Time.time - laserStartTime;
+		rb.angularVelocity = 0;
 		foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
