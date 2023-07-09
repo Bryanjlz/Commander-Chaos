@@ -12,6 +12,7 @@ TagManager:
   - Scrambling
   - Asteroid
   - Health
+  - Bullet
   layers:
   - Default
   - TransparentFX

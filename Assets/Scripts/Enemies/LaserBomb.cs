@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class LaserBomb : Enemy {
 
@@ -27,6 +28,10 @@ public class LaserBomb : Enemy {
 
 		// random spin
 		rb.angularVelocity = Random.Range(30f, 45f) * Mathf.Pow(-1, Random.Range(0, 1));
+	}
+
+	protected override void Kill() {
+		gameRef.onEnemyKill(this);
 	}
 
 	private Vector2 FindTarget() {
@@ -73,28 +78,25 @@ public class LaserBomb : Enemy {
 				}
 				break;
 			case LaserState.CHARGING:
-                // Done Charging
-                if (Time.time - laserStateStartTime > laserChargeTime) {
-					state = LaserState.FIRING;
-					laserStateStartTime = Time.time;
-                    rb.angularVelocity = 15;
-                }
+				// Done Charging
+				if (Time.time - laserStateStartTime > laserChargeTime) {
+					StartFiring();
+				}
 				break;
 			case LaserState.FIRING:
-                // Done Firing
-                if (Time.time - laserStateStartTime > laserSustainTime) {
+				// Done Firing
+				if (Time.time - laserStateStartTime > laserSustainTime) {
 					state = LaserState.STOPPING;
 					laserStateStartTime = Time.time;
 				}
 				break;
 			case LaserState.STOPPING:
-                // Done cooldown
-                if (Time.time - laserStateStartTime > 0.2f) {
+				// Done cooldown
+				if (Time.time - laserStateStartTime > 0.2f) {
 					health = 0;
 				}
 				break;
 		}
-
 	}
 
 	private void StartLaser() {
@@ -108,11 +110,21 @@ public class LaserBomb : Enemy {
 		}
 	}
 
-	public override void PlayerActivate() {
+	private void StartFiring() {
 		state = LaserState.FIRING;
 		laserStateStartTime = Time.time;
-        rb.angularVelocity = 15;
-        foreach (Laser laser in lasers) {
+		rb.angularVelocity = 15;
+
+		// Screenshake
+		float shakeStrength = MyTools.negativeCube(Mathf.Clamp(transform.position.magnitude / 8f, 0, 0.9f)) * 1.5f;
+		impulseSource.m_DefaultVelocity = transform.position / transform.position.magnitude * shakeStrength;
+		impulseSource.GenerateImpulseWithForce(1f);
+	}
+
+	public override void PlayerActivate() {
+		StartFiring();
+
+		foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
 	}

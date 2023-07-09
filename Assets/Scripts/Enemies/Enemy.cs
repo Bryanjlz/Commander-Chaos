@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public abstract class Enemy : MonoBehaviour {
 	// For spawning
@@ -12,6 +13,8 @@ public abstract class Enemy : MonoBehaviour {
 	protected bool isInteractable;
 	[SerializeField]
 	protected int health;
+	[SerializeField]
+	protected CinemachineImpulseSource impulseSource;
 
 	// Move variables
 	protected Player player;
@@ -162,7 +165,7 @@ public abstract class Enemy : MonoBehaviour {
 		isZoneActivated = true;
 	}
 
-	void Kill() {
+	protected virtual void Kill() {
         gameRef.onEnemyKill(this);
     }
 	public virtual void SetTarget(Vector3 target) {
@@ -195,7 +198,7 @@ public abstract class Enemy : MonoBehaviour {
 			{
 				isSelected = false;
                 isScrambled = true;
-            } else if (collision.tag == "Danger" || collision.tag == "Player") {
+            } else if (collision.tag == "Danger" || collision.tag == "Player" || collision.tag == "Bullet") {
 				health -= 1;
 				Debug.Log(collision.gameObject);
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {

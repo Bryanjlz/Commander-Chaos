@@ -46,24 +46,4 @@ public class BasicShooter : Enemy {
 
         health = 0;
 	}
-
-	public override void CheckCollisions() {
-		foreach (Collider2D collision in collisions) {
-			// don't get hit by own bullet as it spawns
-			if (myBullets.Contains(collision.gameObject)) {
-				continue;
-			}
-
-            // usual collision stuff
-            if (collision.gameObject.tag == "Danger" || collision.gameObject.tag == "Player") {
-				health -= 1;
-			} else if (isInteractable && collision.gameObject.tag == "Selection") {
-				isSelected = true;
-			} else if (collision.gameObject.tag == "Death") {
-				health = 0;
-			} else {
-				Debug.Log(collision);
-			}
-		}
-	}
 }
