@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
   m_Name: LaserWave
   m_EditorClassIdentifier: 
-  weight: 5
+  weight: 2
   cooldown: 0
   minTime: 60
   maxTime: 120
