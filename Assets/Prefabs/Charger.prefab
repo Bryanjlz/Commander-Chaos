@@ -340,9 +340,11 @@ MonoBehaviour:
   rb: {fileID: 4121703192406080648}
   isHovered: 0
   isSelected: 0
+  isScrambled: 0
   collisions: []
   borderRenderers:
   - {fileID: 1218604790644836022}
   deathParticles: {fileID: 3951109614342624886, guid: d9bfb9dd5f419a24fad3b73b26082e87, type: 3}
   spriteRenderers:
   - {fileID: 7243884199531012187}
+  turnSpeed: 0.1

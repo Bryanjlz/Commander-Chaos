@@ -543,6 +543,7 @@ MonoBehaviour:
   rb: {fileID: 5575259226151298398}
   isHovered: 0
   isSelected: 0
+  isScrambled: 0
   collisions: []
   borderRenderers:
   - {fileID: 1291091312441389254}
@@ -552,10 +553,12 @@ MonoBehaviour:
   - {fileID: 3588590516209602280}
   - {fileID: 5642721212077967866}
   turnSpeed: 0.5
+  movePerLaser: 4
   laser: {fileID: 6607446400832695044}
   laserRange: 8
   laserChargeTime: 3
   laserSustainTime: 1
+  laserCooldownTime: 2
 --- !u!1 &7518753918065028477
 GameObject:
   m_ObjectHideFlags: 0

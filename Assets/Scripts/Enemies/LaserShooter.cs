@@ -7,6 +7,8 @@ public class LaserShooter : Enemy {
 	[SerializeField]
 	float turnSpeed;
 	[SerializeField]
+	float movePerLaser;
+	[SerializeField]
 	Laser laser;
 	[SerializeField]
 	[Tooltip("How far from center will laser stop")]
@@ -15,8 +17,10 @@ public class LaserShooter : Enemy {
 	float laserChargeTime;
 	[SerializeField]
 	float laserSustainTime;
-	private bool startLaser;
-	private float laserStartTime;
+	[SerializeField]
+	float laserCooldownTime;
+	private LaserState state = LaserState.NONE;
+	private float laserStateStartTime;
 	private Vector3 laserTarget;
 	private Vector3 velocity = Vector3.zero;
 	private Quaternion targetRotation;
@@ -45,31 +49,53 @@ public class LaserShooter : Enemy {
 		// Rotate
 		transform.rotation = MyTools.SmoothDampQuaternion(transform.rotation, targetRotation, ref velocity, turnSpeed);
 
-		if (!startLaser) {
-			// Move
-			rb.AddForce(unitVel * speed);
-			if (rb.velocity.magnitude >= speed) {
-				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
-			}
+		switch(state) {
+			case LaserState.NONE:
+				// Move
+				rb.AddForce(unitVel * speed);
+				if (rb.velocity.magnitude >= speed) {
+					rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
+				}
 
-
-			// Start shoot sequence if in range
-			if (Vector2.Distance(player.transform.position, transform.position) <= laserRange) {
-				StartLaser();
-			}
-		} else if (Time.time - laserStartTime > laserChargeTime + laserSustainTime + 2f) {
-			startLaser = false;
-			speed = 1;
+				// Start shoot sequence if in range
+				if (Vector2.Distance(player.transform.position, transform.position) <= laserRange) {
+					StartLaser();
+				}
+				break;
+			case LaserState.CHARGING:
+				// Done Charging
+				if (Time.time - laserStateStartTime > laserChargeTime) {
+					state = LaserState.FIRING;
+					laserStateStartTime = Time.time;
+				}
+				break;
+			case LaserState.FIRING:
+				// Done Firing
+				if(Time.time - laserStateStartTime > laserSustainTime) {
+					state = LaserState.COOLDOWN;
+					laserStateStartTime = Time.time;
+					laserTarget = player.transform.position;
+				}
+				break;
+			case LaserState.COOLDOWN:
+				// Done cooldown
+				if (Time.time - laserStateStartTime > laserCooldownTime) {
+					laserRange -= movePerLaser;
+					state = LaserState.NONE;
+					laserStateStartTime = Time.time;
+					speed = 1;
+				}
+				break;
 		}
 	}
 
 	private void StartLaser() {
         isInteractable = true;
-        startLaser = true;
+        state = LaserState.CHARGING;
 		speed = 0;
 		rb.velocity = Vector2.zero;
-		laserStartTime = Time.time;
-		laser.StartLaser(laserStartTime);
+		laserStateStartTime = Time.time;
+		laser.StartLaser(laserStateStartTime);
 	}
 
 	public override void PlayerActivate() {
@@ -77,5 +103,12 @@ public class LaserShooter : Enemy {
 	}
 
 	public override void ZoneActivate() {
+	}
+
+	private enum LaserState {
+		CHARGING,
+		FIRING,
+		COOLDOWN,
+		NONE
 	}
 }
