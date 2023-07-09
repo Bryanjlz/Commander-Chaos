@@ -271,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159766584}
   - component: {fileID: 159766583}
+  - component: {fileID: 159766585}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -319,6 +320,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &159766585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159766582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd96bbd5a02f3f6489c666877ae3e113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
+  - {fileID: 11400000, guid: 0393e5466a7122a4a8424b0593cd809a, type: 2}
+  gc: {fileID: 159766583}
 --- !u!1 &468653178
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +448,7 @@ MonoBehaviour:
   gameRef: {fileID: 0}
   healthBar: {fileID: 1063607936}
   maxHealth: 100
+  health: 3
   maxInvulnTime: 1
   invulnTimer: 0
   isInvulnerable: 0

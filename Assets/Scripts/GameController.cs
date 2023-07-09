@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 		player.gameRef = this;
 
 		timeStart = Time.time;
-		ParseLevelData();
+		// ParseLevelData();
 	}
 
 	// Turns Level Data into a timeline
@@ -89,11 +89,17 @@ public class GameController : MonoBehaviour {
 		GameObject enemyObj = Instantiate(enemyPrefabs[(int)enemyType]);
 
 		Enemy enemy = enemyObj.GetComponent<Enemy>();
-		enemy.Setup(player, this);
-
-		switch (enemyType) {
+		switch (enemyType)
+		{
 			// Add cases for special Setup calls
 		}
+
+		AddEnemy(enemy);
+	}
+
+	public void AddEnemy(Enemy enemy)
+	{
+		enemy.Setup(player, this);
 		currentEnemies.Add(enemy);
 	}
 
