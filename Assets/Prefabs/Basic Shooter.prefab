@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable: 1
   health: 1
+  impulseSource: {fileID: 0}
   speed: 1
   rb: {fileID: 7239406462258756729}
   isHovered: 0
@@ -274,3 +275,4 @@ MonoBehaviour:
   spriteRenderers:
   - {fileID: 4030061372725762322}
   bulletPrefab: {fileID: 6256043091352135407, guid: 3e7322ea5d1717a448a70b0c83ad8c7c, type: 3}
+  shootRange: 5

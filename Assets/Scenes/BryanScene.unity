@@ -271,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159766584}
   - component: {fileID: 159766583}
+  - component: {fileID: 159766585}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -333,7 +334,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveWaves:
   - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
+  - {fileID: 11400000, guid: ff28af01ea281294a94167a08690a577, type: 2}
+  - {fileID: 11400000, guid: 27651fd26f1ea6646b8cfc1e63c78145, type: 2}
+  - {fileID: 11400000, guid: 3d37b0d42aaf3e44cb800b75e37189eb, type: 2}
   activeWaves:
+  - {fileID: 11400000, guid: 671e0f9fac2ff1f4ca92228912c269fa, type: 2}
+  - {fileID: 11400000, guid: 52a10a533ff43c94bad5d8f005f15f5b, type: 2}
+  - {fileID: 11400000, guid: 5481af39fad82da4cb5cfb41b649fe78, type: 2}
   - {fileID: 11400000, guid: 0393e5466a7122a4a8424b0593cd809a, type: 2}
   - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   gc: {fileID: 159766583}

@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour {
 		player.gameRef = this;
 
 		timeStart = Time.time;
-		// ParseLevelData();
+		//ParseLevelData();
 	}
 
 	// Turns Level Data into a timeline

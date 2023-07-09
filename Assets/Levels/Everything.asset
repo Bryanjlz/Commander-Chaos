@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
   m_Name: Everything
   m_EditorClassIdentifier: 
-  weight: 1
+  weight: 5
   cooldown: 0
   minTime: 0
   maxTime: 0

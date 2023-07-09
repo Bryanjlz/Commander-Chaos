@@ -60,7 +60,7 @@ public class SpawnController : MonoBehaviour
 					wave.Spawn(gc);
 					return;
 				}
-				tmp++;
+				tmp += wave.weight;
 			}
 			++times;
 		}
@@ -80,7 +80,7 @@ public class SpawnController : MonoBehaviour
 					wave.Spawn(gc);
 					return;
 				}
-				tmp++;
+				tmp += wave.weight;
 			}
 			++times;
 		}

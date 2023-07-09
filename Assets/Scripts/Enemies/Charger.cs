@@ -9,6 +9,8 @@ public class Charger : Enemy {
 	private float turnStartTime;
 	[SerializeField]
 	float turnSpeed;
+	[SerializeField]
+	float chargeRange;
 
 	private Vector3 velocity = Vector3.zero;
 	private Quaternion targetRotation;
@@ -50,10 +52,14 @@ public class Charger : Enemy {
 				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 			}
 		}
+
+		if (!isCharging && Vector2.Distance(transform.position, player.transform.position) < chargeRange) {
+			ZoneActivate();
+		}
 	}
 
 	public override void PlayerActivate() {
-        isInteractable = false;
+		isInteractable = false;
 		isTurning = true;
 		turnStartTime = Time.time;
 		rb.velocity = Vector2.zero;
@@ -61,39 +67,39 @@ public class Charger : Enemy {
 		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
 	}
 
-    public override void CheckCollisions()
-    {
-        foreach (Collider2D collision in collisions)
-        {
-            if (collision.tag == "Scrambling")
-            {
-                isSelected = false;
-                isScrambled = true;
-            }
-            else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
-            {
-                health -= 1;
-                Debug.Log(collision.gameObject);
-            }
-            else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
-            {
-                isSelected = true;
-            }
-            else if (collision.gameObject.tag == "Death")
-            {
-                health = 0;
-            }
-            else
-            {
-                Debug.Log(collision);
-            }
-        }
-    }
-
-    public override void ZoneActivate() {
+	public override void ZoneActivate() {
 		speed = 5;
 		isInteractable = false;
 		transform.GetChild(0).gameObject.SetActive(true);
 		CheckCollisions();
+	}
+
+	public override void CheckCollisions()
+	{
+		foreach (Collider2D collision in collisions)
+		{
+			if (collision.tag == "Scrambling")
+			{
+				isSelected = false;
+				isScrambled = true;
+			}
+			else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
+			{
+				health -= 1;
+				Debug.Log(collision.gameObject);
+			}
+			else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
+			{
+				isSelected = true;
+			}
+			else if (collision.gameObject.tag == "Death")
+			{
+				health = 0;
+			}
+			else
+			{
+				Debug.Log(collision);
+			}
+		}
 	}
 }

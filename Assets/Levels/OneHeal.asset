@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d916f5678d572bc4283b0281775762c6, type: 3}
-  m_Name: MeteorShower
+  m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
+  m_Name: OneHeal
   m_EditorClassIdentifier: 
-  weight: 3
+  weight: 1
   cooldown: 0
-  minTime: 50
+  minTime: 0
   maxTime: 0
-  director: {fileID: 6045129376529520863, guid: 2fdc43675e2c2fc40bc50838a2ae1b4f, type: 3}
+  director: {fileID: 0}
+  levelLength: 0
+  numEnemies: 000000000000000000000000000000000000000001000000
