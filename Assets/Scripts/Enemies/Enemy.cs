@@ -136,7 +136,7 @@ public abstract class Enemy : MonoBehaviour {
 		transform.rotation = targetRotation;
 	}
 
-	void OnTriggerEnter2D(Collider2D collision) {
+	public void OnTriggerEnter2D(Collider2D collision) {
 		collisions.Add(collision);
 		CheckCollisions();
 	}
