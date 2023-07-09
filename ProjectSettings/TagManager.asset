@@ -10,6 +10,8 @@ TagManager:
   - Enemy
   - Zone
   - Scrambling
+  - Asteroid
+  - Health
   layers:
   - Default
   - TransparentFX

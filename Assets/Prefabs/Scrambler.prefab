@@ -216,6 +216,7 @@ MonoBehaviour:
   rb: {fileID: 2554130929523111098}
   isHovered: 0
   isSelected: 0
+  isScrambled: 0
   collisions: []
   borderRenderers:
   - {fileID: 8484794895961521466}
@@ -223,6 +224,7 @@ MonoBehaviour:
   spriteRenderers:
   - {fileID: 7719008481004827337}
   zoneOfScrambling: {fileID: 2168941765028031244}
+  maxFieldSize: 4
 --- !u!50 &2554130929523111098
 Rigidbody2D:
   serializedVersion: 4
