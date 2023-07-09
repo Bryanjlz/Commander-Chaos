@@ -5,7 +5,7 @@ using Cinemachine;
 
 public abstract class Enemy : MonoBehaviour {
 	// For spawning
-	private readonly float X_POS_MAX = 19;
+	private readonly float X_POS_MAX = 11;
 	private readonly float Y_POS_MAX = 11;
 
 	// Set in editor

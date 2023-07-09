@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeteorShower : WaveDirector<ScriptableObjectWaveData>
 {
 	// For spawning
-	private readonly float X_POS_MAX = 19;
+	private readonly float X_POS_MAX = 11;
 	private readonly float Y_POS_MAX = 11;
 
 	public override void SpawnWith(GameController gc, ScriptableObjectWaveData wave)
