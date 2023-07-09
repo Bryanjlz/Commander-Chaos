@@ -461,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameRef: {fileID: 0}
   healthBar: {fileID: 1063607936}
+  sprites: {fileID: 1328336065}
   maxHealth: 100
   health: 3
   maxInvulnTime: 1
