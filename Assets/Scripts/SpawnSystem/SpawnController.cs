@@ -58,14 +58,14 @@ public class SpawnController : MonoBehaviour
 			// Check for new waves
 			for (int i = passiveWaves.Count - 1; i >= 0; i--) {
 				IWave currentWave = passiveWaves[i];
-				if (deltaTime > currentWave.minTime && deltaTime < currentWave.maxTime && !inUsePassiveWaves.Contains(currentWave)) {
+				if (deltaTime > currentWave.minTime && (deltaTime < currentWave.maxTime || currentWave.maxTime == 0) && !inUsePassiveWaves.Contains(currentWave)) {
 					passiveWeightSum += currentWave.weight;
 					inUsePassiveWaves.Add(currentWave);
 				}
 			}
 			for (int i = activeWaves.Count - 1; i >= 0; i--) {
 				IWave currentWave = activeWaves[i];
-				if (deltaTime > currentWave.minTime && deltaTime < currentWave.maxTime && !inUseActiveWaves.Contains(currentWave)) {
+				if (deltaTime > currentWave.minTime && (deltaTime < currentWave.maxTime || currentWave.maxTime == 0) && !inUseActiveWaves.Contains(currentWave)) {
 					activeWeightSum += currentWave.weight;
 					inUseActiveWaves.Add(currentWave);
 				}
