@@ -30,7 +30,6 @@ public class LevelTracker : MonoBehaviour {
 	public IEnumerator TimeScore() {
 		while (true) {
 			yield return new WaitForSeconds(1);
-			Debug.Log("Active");
 			score += scorePerSec;
 		}
 	}

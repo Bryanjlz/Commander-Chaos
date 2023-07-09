@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 	public GameController gameRef;
 
 	public GameObject healthBar;
+	[SerializeField]
+	GameObject sprites;
 
 	public int maxHealth = 3;
 	[SerializeField]
@@ -89,6 +91,13 @@ public class Player : MonoBehaviour
 		);
 	}
 
+	void UpdateColorAlpha(float alpha) {
+		foreach (SpriteRenderer sr in sprites.GetComponentsInChildren<SpriteRenderer>()) {
+			Color currentColor = sr.color;
+			sr.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+		}
+	}
+
 	void BecomeInvulnerable()
 	{
 		isInvulnerable = true;
@@ -96,25 +105,27 @@ public class Player : MonoBehaviour
 		if (health > 0)
 		{
 			invulnFlash = StartCoroutine("Flash");
-			GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+			UpdateColorAlpha(0.5f);
 		}
 	}
 
 	void BecomeVulnerable()
 	{
 		isInvulnerable = false;
-		GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+		UpdateColorAlpha(1.0f);
 		StopCoroutine(invulnFlash);
 	}
+
+
 
 	IEnumerator Flash()
 	{
 		WaitForSeconds delay = new WaitForSeconds(0.12f);
 		while (true)
 		{
-			GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+			UpdateColorAlpha(0.5f);
 			yield return delay;
-			GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+			UpdateColorAlpha(1.0f);
 			yield return delay;
 		}
 	}

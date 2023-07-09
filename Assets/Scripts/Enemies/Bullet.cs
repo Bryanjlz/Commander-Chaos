@@ -47,7 +47,6 @@ public class Bullet : MonoBehaviour {
 		}
 		// don't hit the enemy spawning the bullet
 		if ((parent == null || collision.gameObject != parent)) {
-			Debug.Break();
 			hit = true;
 		}
 	}

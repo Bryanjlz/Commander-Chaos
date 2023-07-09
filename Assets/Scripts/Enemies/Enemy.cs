@@ -14,9 +14,7 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected int health;
 	[SerializeField]
-	int scoreGiven;
-	[SerializeField]
-	protected CinemachineImpulseSource impulseSource;
+	protected int scoreGiven;
 
 	// Move variables
 	protected Player player;
@@ -168,9 +166,17 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	protected virtual void Kill() {
+        int randomNum = Random.Range(1, 9);
+        FindObjectOfType<AudioManager>().Play("death" + randomNum);
         gameRef.onEnemyKill(this);
     }
-	public virtual void SetTarget(Vector3 target) {
+
+    protected virtual void DeafKill()
+	{
+        gameRef.onEnemyKill(this);
+    }
+
+    public virtual void SetTarget(Vector3 target) {
 		// set direction
 		Vector2 deltaPos = target - transform.position;
 		unitVel = deltaPos / deltaPos.magnitude;
@@ -205,12 +211,19 @@ public abstract class Enemy : MonoBehaviour {
 					LevelTracker.self.score += scoreGiven;
 				}
 				Debug.Log(collision.gameObject);
-			}else if (collision.tag == "Player") {
+			} else if (collision.tag == "Player") {
 				health = 0;
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
 			} else if (collision.gameObject.tag == "Death") {
 				health = 0;
+			} else if (!isSelected && !isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
+                isSelected = true;
+                int randomNum = Random.Range(1, 6);
+                FindObjectOfType<AudioManager>().Play("s" + randomNum);
+            } else if (collision.gameObject.tag == "Death") {
+				// health = 0;
+				DeafKill();
 			} else {
 				Debug.Log(collision);
 			}

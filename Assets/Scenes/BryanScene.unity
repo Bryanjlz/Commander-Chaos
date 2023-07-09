@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882719838148540996, guid: 93a8e776df1f59d409a0b73a6d138509, type: 3}
+      propertyPath: sounds.Array.data[14].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2e86954213b1ab4dbc105178514d334, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -334,19 +338,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveWaves:
   - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
-  - {fileID: 11400000, guid: ff28af01ea281294a94167a08690a577, type: 2}
-  - {fileID: 11400000, guid: 27651fd26f1ea6646b8cfc1e63c78145, type: 2}
-  - {fileID: 11400000, guid: 3d37b0d42aaf3e44cb800b75e37189eb, type: 2}
   activeWaves:
-  - {fileID: 11400000, guid: 671e0f9fac2ff1f4ca92228912c269fa, type: 2}
-  - {fileID: 11400000, guid: 52a10a533ff43c94bad5d8f005f15f5b, type: 2}
-  - {fileID: 11400000, guid: 5481af39fad82da4cb5cfb41b649fe78, type: 2}
-  - {fileID: 11400000, guid: 0393e5466a7122a4a8424b0593cd809a, type: 2}
+  - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   gc: {fileID: 159766583}
   timeStart: 0
-  timeBetweenPassiveWaves: 5
-  timeBetweenActiveWaves: 15
+  timeBetweenPassiveWaves: 2
+  timeBetweenActiveWaves: 10
   passiveWeightSum: 0
   activeWeightSum: 0
 --- !u!1 &468653178
@@ -923,9 +921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e895a78d673b341aa1a9019cd666be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStart: 0
-  score: 0
-  scorePerSec: 5
+  currentLevel: {fileID: 11400000, guid: 4ab2fd13d1dadfd47a724d7c8701defc, type: 2}
 --- !u!4 &1032256854
 Transform:
   m_ObjectHideFlags: 0
@@ -1127,7 +1123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1340677014332323775, guid: 2f5d458c77b18b7449af4a28ffe383db, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6524295600287813980, guid: 2f5d458c77b18b7449af4a28ffe383db, type: 3}
       propertyPath: m_RootOrder
