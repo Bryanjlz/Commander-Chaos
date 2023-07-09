@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
   m_Name: fun
   m_EditorClassIdentifier: 
-  weight: 5
+  weight: 3
   cooldown: 0
-  minTime: 160
+  minTime: 120
   maxTime: 0
   director: {fileID: 7146891656834963952, guid: 3ccbcd6763355eb4fa587cd4610965f1, type: 3}
   levelLength: 0
-  numEnemies: 00000000020000000000000001000000020000000100000000000000
+  numEnemies: 02000000020000000200000002000000020000000100000001000000
