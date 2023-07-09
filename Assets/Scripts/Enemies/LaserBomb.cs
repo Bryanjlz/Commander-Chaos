@@ -32,12 +32,20 @@ public class LaserBomb : Enemy {
 	private Vector2 FindTarget() {
 		bool foundTarget = false;
 		Vector2 targetPos = Vector2.zero;
+
+		int times = 0;
 		while (!foundTarget) {
 			targetPos = new Vector2(Random.Range(-10, 10), Random.Range(-4, 4));
 			Vector2 deltaVec = targetPos - (Vector2)transform.position;
 			RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(3, 3), 0f, deltaVec, deltaVec.magnitude, LayerMask.GetMask("Player"));
 			if (!hit) {
 				foundTarget = true;
+			}
+			++times;
+			if (times >= 1000)
+			{
+				Destroy(this);
+				break;
 			}
 		}
 		return targetPos;

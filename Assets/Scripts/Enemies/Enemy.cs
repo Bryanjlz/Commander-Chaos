@@ -44,6 +44,9 @@ public abstract class Enemy : MonoBehaviour {
     protected SpriteRenderer[] spriteRenderers;
 	protected Color originalColor;
 
+	private bool useForcedSpawnPoint = false;
+	private Vector2 forcedSpawnPoint = Vector2.zero;
+
     public void Start()
     {
         for (int i = 0; i < spriteRenderers.Length; i++)
@@ -60,12 +63,18 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     public virtual void Setup(Player player, GameController gameRef) {
-		SetSpawnPoint();
+		if (useForcedSpawnPoint)
+		{
+			transform.position = forcedSpawnPoint;
+		} else
+		{
+			SetSpawnPoint();
+		}
 		this.player = player;
 		this.gameRef = gameRef;
     }
 
-		protected void SetSpawnPoint() {
+	protected void SetSpawnPoint() {
 		int side = Random.Range(0, 4);
 		switch(side) {
 			case 0:
@@ -205,5 +214,11 @@ public abstract class Enemy : MonoBehaviour {
 
 	public void OnMouseExit() {
 		isHovered = false;
+	}
+
+	public void SetForcedSpawn(Vector2 forcedSpawn)
+	{
+		this.forcedSpawnPoint = forcedSpawn;
+		this.useForcedSpawnPoint = true;
 	}
 }

@@ -22,6 +22,7 @@ public class HealingKit : Enemy
 	{
 		bool foundTarget = false;
 		Vector2 targetPos = Vector2.zero;
+		int times = 0;
 		while (!foundTarget)
 		{
 			targetPos = new Vector2(Random.Range(-10, 10), Random.Range(-4, 4));
@@ -30,6 +31,12 @@ public class HealingKit : Enemy
 			if (!hit)
 			{
 				foundTarget = true;
+			}
+			++times;
+			if (times >= 1000)
+			{
+				Destroy(this);
+				break;
 			}
 		}
 		return targetPos;

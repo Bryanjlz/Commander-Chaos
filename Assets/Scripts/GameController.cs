@@ -84,11 +84,15 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void SpawnEnemy(EnemyType enemyType) {
+	public void SpawnEnemy(EnemyType enemyType, float x = 0, float y = 0) {
 		print(Time.time - timeStart + " " + enemyType);
 		GameObject enemyObj = Instantiate(enemyPrefabs[(int)enemyType]);
 
 		Enemy enemy = enemyObj.GetComponent<Enemy>();
+		if (x != 0 && y != 0)
+		{
+			enemy.SetForcedSpawn(new Vector2(x, y));
+		}
 		switch (enemyType)
 		{
 			// Add cases for special Setup calls
@@ -97,9 +101,13 @@ public class GameController : MonoBehaviour {
 		AddEnemy(enemy);
 	}
 
-	public void AddEnemy(Enemy enemy)
+	public void AddEnemy(Enemy enemy, float x = 0, float y = 0)
 	{
 		enemy.Setup(player, this);
+		if (x != 0 && y != 0)
+		{
+			enemy.SetForcedSpawn(new Vector2(x, y));
+		}
 		currentEnemies.Add(enemy);
 	}
 

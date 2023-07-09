@@ -332,10 +332,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd96bbd5a02f3f6489c666877ae3e113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waves:
+  passiveWaves:
   - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
+  activeWaves:
   - {fileID: 11400000, guid: 0393e5466a7122a4a8424b0593cd809a, type: 2}
+  - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   gc: {fileID: 159766583}
+  timeStart: 0
+  timeBetweenPassiveWaves: 5
+  timeBetweenActiveWaves: 15
+  passiveWeightSum: 0
+  activeWeightSum: 0
 --- !u!1 &468653178
 GameObject:
   m_ObjectHideFlags: 0
