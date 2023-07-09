@@ -8,15 +8,24 @@ public class Scrambler : Enemy
 	[SerializeField]
 	GameObject zoneOfScrambling;
 
+
+	float fieldSize;
+	[SerializeField]
+	float maxFieldSize;
+
     // Start is called before the first frame update
     public override void Setup(Player player, GameController gameRef)
 	{
 		base.Setup(player, gameRef);
+		SetTarget(player.transform.position);
+
+		fieldSize = 0.0f;
+		zoneOfScrambling.GetComponent<SpriteRenderer>().size = Vector2.zero;
+		zoneOfScrambling.GetComponent<CircleCollider2D>().radius = 0.0f;
 	}
 
 	public override void DefaultBehaviour()
 	{
-		SetTarget(player.transform.position);
 
 		// Move
 		rb.AddForce(unitVel * speed);
@@ -24,8 +33,26 @@ public class Scrambler : Enemy
 			rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 		}
 
+		if (fieldSize < maxFieldSize)
+		{
+			fieldSize += Time.deltaTime;
+			zoneOfScrambling.GetComponent<SpriteRenderer>().size = new Vector2(2 * fieldSize, 2 * fieldSize);
+			// It's "Lenient"
+			zoneOfScrambling.GetComponent<CircleCollider2D>().radius = fieldSize * 0.8f;
+		}
+
 		// Efficiency moment
 		zoneOfScrambling.transform.position = transform.position;
+	}
+
+	public void FixedUpdate()
+	{
+
+		rb.AddTorque(90.0f);
+		if (Mathf.Abs(rb.angularVelocity) >= 720.0f)
+		{
+			rb.angularVelocity = rb.angularVelocity / Mathf.Abs(rb.angularVelocity);
+		}
 	}
 
 	public override void ZoneActivate()
