@@ -6,8 +6,7 @@ public enum EnemyType {
 	CHARGER,
 	BASIC_SHOOTER,
 	LASER,
-	BOMB,
-	ASTEROID,
 	X_BOMB,
+	ASTEROID,
 	SHIELDER
 }
