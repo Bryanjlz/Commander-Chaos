@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 		if (collision.tag == "Health" && health < maxHealth)
 		{
 			++health;
+			UpdateHealthBar();
 			return;
 		}
 
