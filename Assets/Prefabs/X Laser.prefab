@@ -905,7 +905,7 @@ MonoBehaviour:
   - {fileID: 8009810792918528461}
   - {fileID: 5247054524059508101}
   - {fileID: 6271478752595326865}
-  deathParticles: {fileID: 0}
+  deathParticles: {fileID: 3951109614342624886, guid: e8cd3c7f5d3b7a745bbef519a527eda4, type: 3}
   spriteRenderers:
   - {fileID: 1299468076274651772}
   - {fileID: 4234726613683498570}
