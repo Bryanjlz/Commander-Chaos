@@ -47,7 +47,7 @@ MonoBehaviour:
   sounds:
   - name: Laser
     clip: {fileID: 8300000, guid: a1b252dc2d5cb254b819347ccb9553b0, type: 3}
-    volume: 1
+    volume: 0.301
     pitch: 1
     loop: 0
     source: {fileID: 0}

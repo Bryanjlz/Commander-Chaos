@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // What you want to play at the start here
+        // What you want to play at the start here 
     }
     public void Play(string name)
     {
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
-        {
+        { 
             return;
         }
         s.source.Stop();
