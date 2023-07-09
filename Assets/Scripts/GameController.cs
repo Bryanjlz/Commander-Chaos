@@ -86,7 +86,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void SpawnEnemy(EnemyType enemyType, float x = 0, float y = 0) {
-		print(Time.time - timeStart + " " + enemyType);
 		GameObject enemyObj = Instantiate(enemyPrefabs[(int)enemyType]);
 
 		Enemy enemy = enemyObj.GetComponent<Enemy>();

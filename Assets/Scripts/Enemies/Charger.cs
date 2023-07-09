@@ -86,7 +86,6 @@ public class Charger : Enemy {
 			else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
 			{
 				health -= 1;
-				Debug.Log(collision.gameObject);
 			}
 			else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
 			{

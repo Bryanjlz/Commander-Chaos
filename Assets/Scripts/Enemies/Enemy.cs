@@ -15,8 +15,6 @@ public abstract class Enemy : MonoBehaviour {
 	protected int health;
 	[SerializeField]
 	int scoreGiven;
-	[SerializeField]
-	protected CinemachineImpulseSource impulseSource;
 
 	// Move variables
 	protected Player player;

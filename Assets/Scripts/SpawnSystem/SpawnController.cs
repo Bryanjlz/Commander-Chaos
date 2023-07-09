@@ -6,9 +6,11 @@ public class SpawnController : MonoBehaviour
 {
 	[Tooltip("Low-intensity waves that constantly spawn stuff")]
 	public List<IWave> passiveWaves;
+	public List<IWave> inUsePassiveWaves;
 
 	[Tooltip("Special waves that happen infrequently")]
 	public List<IWave> activeWaves;
+	public List<IWave> inUseActiveWaves;
 
 
 	public GameController gc;
@@ -24,20 +26,52 @@ public class SpawnController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		StartCoroutine("CheckWaves");
 		StartCoroutine("PassiveWave");
 		StartCoroutine("ActiveWave");
 
 		timeStart = Time.time;
+	}
 
-		passiveWeightSum = 0;
-		foreach (IWave wave in passiveWaves)
-		{
-			passiveWeightSum += wave.weight;
-		}
-		activeWeightSum = 0;
-		foreach (IWave wave in activeWaves)
-		{
-			activeWeightSum += wave.weight;
+	IEnumerator CheckWaves() {
+		while (true) {
+			float deltaTime = Time.time - timeStart;
+
+			// Remove expired waves
+			for (int i = inUsePassiveWaves.Count - 1; i >= 0; i--) {
+				IWave currentWave = inUsePassiveWaves[i];
+				if (deltaTime > currentWave.maxTime) {
+					passiveWeightSum -= currentWave.weight;
+					inUsePassiveWaves.RemoveAt(i);
+					print(deltaTime);
+				}
+			}
+			for (int i = inUseActiveWaves.Count - 1; i >= 0; i--) {
+				IWave currentWave = inUseActiveWaves[i];
+				if (deltaTime > currentWave.maxTime) {
+					activeWeightSum -= currentWave.weight;
+					inUseActiveWaves.RemoveAt(i);
+					print(deltaTime);
+				}
+			}
+
+			// Check for new waves
+			for (int i = passiveWaves.Count - 1; i >= 0; i--) {
+				IWave currentWave = passiveWaves[i];
+				if (deltaTime > currentWave.minTime && deltaTime < currentWave.maxTime && !inUsePassiveWaves.Contains(currentWave)) {
+					passiveWeightSum += currentWave.weight;
+					inUsePassiveWaves.Add(currentWave);
+				}
+			}
+			for (int i = activeWaves.Count - 1; i >= 0; i--) {
+				IWave currentWave = activeWaves[i];
+				if (deltaTime > currentWave.minTime && deltaTime < currentWave.maxTime && !inUseActiveWaves.Contains(currentWave)) {
+					activeWeightSum += currentWave.weight;
+					inUseActiveWaves.Add(currentWave);
+				}
+			}
+
+			yield return new WaitForSeconds(1f);
 		}
 	}
 
@@ -53,7 +87,7 @@ public class SpawnController : MonoBehaviour
 		{
 			float r = Random.Range(0, passiveWeightSum);
 			int tmp = 0;
-			foreach (IWave wave in passiveWaves)
+			foreach (IWave wave in inUsePassiveWaves)
 			{
 				if (r < tmp + wave.weight)
 				{
@@ -73,7 +107,7 @@ public class SpawnController : MonoBehaviour
 		{
 			float r = Random.Range(0, activeWeightSum);
 			int tmp = 0;
-			foreach (IWave wave in activeWaves)
+			foreach (IWave wave in inUseActiveWaves)
 			{
 				if (r < tmp + wave.weight)
 				{
