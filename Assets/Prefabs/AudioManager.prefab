@@ -59,7 +59,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Charger
     clip: {fileID: 8300000, guid: defab4be91276c143bde16ed93238e87, type: 3}
-    volume: 0.75
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: s3
-    clip: {fileID: 8300000, guid: 65d2afa3dbd986741864bd09ac4c0bf0, type: 3}
+    clip: {fileID: 8300000, guid: f2e86954213b1ab4dbc105178514d334, type: 3}
     volume: 0.5
     pitch: 1.06
     loop: 0
