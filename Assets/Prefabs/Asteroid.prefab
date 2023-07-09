@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable: 0
   health: 1
+  scoreGiven: 5
+  impulseSource: {fileID: 0}
   speed: 1
   rb: {fileID: 3379375547219289385}
   isHovered: 0

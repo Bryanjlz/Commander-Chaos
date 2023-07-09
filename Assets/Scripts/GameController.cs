@@ -24,12 +24,13 @@ public class GameController : MonoBehaviour {
 		player.gameRef = this;
 
 		timeStart = Time.time;
-		//ParseLevelData();
+		LevelTracker.self.timeStart = timeStart;
+
+		LevelTracker.self.BeginLevel();
 	}
 
 	// Turns Level Data into a timeline
 	public void ParseLevelData() {
-		level = LevelTracker.self.currentLevel;
 		List<int> numEnemies = new List<int>(level.numEnemies);
 
 		int totalNumEnemies = 0;
@@ -112,6 +113,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void onPlayerKill() {
+		LevelTracker.self.DoneLevel();
 		gameOverScreen.SetActive(true);
 	}
 

@@ -6,6 +6,8 @@ using Cinemachine;
 public class LaserBomb : Enemy {
 
 	[SerializeField]
+	CinemachineImpulseSource impulseSource;
+	[SerializeField]
 	Collider2D collider;
 	[SerializeField]
 	List<Laser> lasers;

@@ -14,6 +14,8 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected int health;
 	[SerializeField]
+	int scoreGiven;
+	[SerializeField]
 	protected CinemachineImpulseSource impulseSource;
 
 	// Move variables
@@ -194,13 +196,17 @@ public abstract class Enemy : MonoBehaviour {
 
 	public virtual void CheckCollisions() {
 		foreach (Collider2D collision in collisions) {
-			if (collision.tag == "Scrambling")
-			{
+			if (collision.tag == "Scrambling") {
 				isSelected = false;
-                isScrambled = true;
-            } else if (collision.tag == "Danger" || collision.tag == "Player" || collision.tag == "Bullet") {
+				isScrambled = true;
+			} else if (collision.tag == "Danger" || collision.tag == "Bullet") {
 				health -= 1;
+				if (health == 0) {
+					LevelTracker.self.score += scoreGiven;
+				}
 				Debug.Log(collision.gameObject);
+			}else if (collision.tag == "Player") {
+				health = 0;
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
 			} else if (collision.gameObject.tag == "Death") {
