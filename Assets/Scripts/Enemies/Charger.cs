@@ -59,7 +59,8 @@ public class Charger : Enemy {
 	}
 
 	public override void PlayerActivate() {
-		isInteractable = false;
+		FindObjectOfType<AudioManager>().Play("Charger");
+        isInteractable = false;
 		isTurning = true;
 		turnStartTime = Time.time;
 		rb.velocity = Vector2.zero;
@@ -67,7 +68,39 @@ public class Charger : Enemy {
 		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
 	}
 
-	public override void ZoneActivate() {
+    public override void CheckCollisions()
+    {
+        foreach (Collider2D collision in collisions)
+        {
+            if (collision.tag == "Scrambling")
+            {
+                isSelected = false;
+                isScrambled = true;
+            }
+            else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
+            {
+                health -= 1;
+                Debug.Log(collision.gameObject);
+            }
+            else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
+            {
+                int randomNum = Random.Range(1, 4);
+                FindObjectOfType<AudioManager>().Play("s" + randomNum);
+                isSelected = true;
+            }
+            else if (collision.gameObject.tag == "Death")
+            {
+				DeafKill();
+                // health = 0;
+            }
+            else
+            {
+                Debug.Log(collision);
+            }
+        }
+    }
+
+    public override void ZoneActivate() {
 		speed = 5;
 		isInteractable = false;
 		transform.GetChild(0).gameObject.SetActive(true);

@@ -44,4 +44,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141312af00df8a94ba9f1dba5aa94df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: Laser
+    clip: {fileID: 8300000, guid: a1b252dc2d5cb254b819347ccb9553b0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Scrambler
+    clip: {fileID: 8300000, guid: a0636baf3b734fa4e89805d2b9d66890, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Charger
+    clip: {fileID: 8300000, guid: defab4be91276c143bde16ed93238e87, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death1
+    clip: {fileID: 8300000, guid: 483c143ef2fd23f4d8c7519257f301d5, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death2
+    clip: {fileID: 8300000, guid: 12bb9c610bc637c44b33508f1113480c, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death3
+    clip: {fileID: 8300000, guid: 23c261cc6e40b89439d48d96fced608a, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death4
+    clip: {fileID: 8300000, guid: 2e2a5ffce8195e44a9e0f476378342bd, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death5
+    clip: {fileID: 8300000, guid: c9db3b4a674a575498bae6cb3f8af044, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death6
+    clip: {fileID: 8300000, guid: 78ef0d467964dee44bb318d5e610844c, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death7
+    clip: {fileID: 8300000, guid: a098ae39e82cd734ab6f4225b878c26c, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: death8
+    clip: {fileID: 8300000, guid: 15f2e063aaa672349bb6c361a32b9798, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: laserwarn
+    clip: {fileID: 8300000, guid: 0c5b0d1e7eb6513488da7a25f6066d5a, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: s1
+    clip: {fileID: 8300000, guid: f2e86954213b1ab4dbc105178514d334, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: s2
+    clip: {fileID: 8300000, guid: f2e86954213b1ab4dbc105178514d334, type: 3}
+    volume: 0.5
+    pitch: 1.03
+    loop: 0
+    source: {fileID: 0}
+  - name: s3
+    clip: {fileID: 8300000, guid: 65d2afa3dbd986741864bd09ac4c0bf0, type: 3}
+    volume: 0.5
+    pitch: 1.06
+    loop: 0
+    source: {fileID: 0}
