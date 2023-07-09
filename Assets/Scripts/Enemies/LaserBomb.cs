@@ -72,12 +72,7 @@ public class LaserBomb : Enemy {
 			case LaserState.CHARGING:
 				// Done Charging
 				if (Time.time - laserStateStartTime > laserChargeTime) {
-					state = LaserState.FIRING;
-					laserStateStartTime = Time.time;
-					rb.angularVelocity = 15;
-
-					impulseSource.m_DefaultVelocity = transform.position / transform.position.magnitude * MyTools.negativeCube(Mathf.Clamp(transform.position.magnitude / 8f,-1f, 1f));
-					impulseSource.GenerateImpulseWithForce(1f);
+					StartFiring();
 				}
 				break;
 			case LaserState.FIRING:
@@ -107,10 +102,20 @@ public class LaserBomb : Enemy {
 		}
 	}
 
-	public override void PlayerActivate() {
+	private void StartFiring() {
 		state = LaserState.FIRING;
 		laserStateStartTime = Time.time;
 		rb.angularVelocity = 15;
+
+		// Screenshake
+		float shakeStrength = MyTools.negativeCube(Mathf.Clamp(transform.position.magnitude / 8f, 0, 0.9f)) * 1.5f;
+		impulseSource.m_DefaultVelocity = transform.position / transform.position.magnitude * shakeStrength;
+		impulseSource.GenerateImpulseWithForce(1f);
+	}
+
+	public override void PlayerActivate() {
+		StartFiring();
+
 		foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
