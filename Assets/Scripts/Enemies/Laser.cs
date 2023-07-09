@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,8 @@ public class Laser : MonoBehaviour {
 
 	public void StartLaser(float laserStartTime) {
 		this.laserStartTime = laserStartTime;
-		state = LaserState.CHARGING;
+		StartCoroutine(Sounds());
+        state = LaserState.CHARGING;
 	}
 
 	public void FireLaserEarly() {
@@ -42,10 +44,9 @@ public class Laser : MonoBehaviour {
 		float test = Mathf.Floor(timeSinceLaserStart) * 2;
 		switch (state) {
 			case LaserState.CHARGING:
-				sprite.enabled = true;
-				if ((int)(timeSinceLaserStart * 2) % 2 == 0) {
+                sprite.enabled = true;
+                if ((int)(timeSinceLaserStart * 2) % 2 == 0) {
 					sprite.color = laserFlash;
-                    FindObjectOfType<AudioManager>().Play("laserwarn");
                 } else {
 					sprite.color = laserIndicator;
 				}
@@ -75,7 +76,16 @@ public class Laser : MonoBehaviour {
 		}
 	}
 
-	private enum LaserState {
+    IEnumerator Sounds()
+    {
+        FindObjectOfType<AudioManager>().Play("laserwarn");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("laserwarn");
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<AudioManager>().Play("laserwarn");
+    }
+
+    private enum LaserState {
 		CHARGING,
 		FIRING,
 		STOPPING,

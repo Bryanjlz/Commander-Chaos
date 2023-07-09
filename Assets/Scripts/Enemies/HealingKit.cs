@@ -70,7 +70,51 @@ public class HealingKit : Enemy
             }
         }
     }
-        
+
+    public override void CheckCollisions()
+    {
+        foreach (Collider2D collision in collisions)
+        {
+            if (collision.tag == "Scrambling")
+            {
+                isSelected = false;
+                isScrambled = true;
+            }
+            else if (collision.tag == "Danger" || collision.tag == "Bullet")
+            {
+                DeafKill();
+            }
+            else if (collision.tag == "Player")
+            {
+                health = 0;
+            }
+            else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
+            {
+                isSelected = true;
+            }
+            else if (!isSelected && !isScrambled && isInteractable && collision.gameObject.tag == "Selection")
+            {
+                isSelected = true;
+                int randomNum = Random.Range(1, 4);
+                FindObjectOfType<AudioManager>().Play("s" + randomNum);
+            }
+            else if (collision.gameObject.tag == "Death")
+            {
+                // health = 0;
+                DeafKill();
+            }
+            else
+            {
+                Debug.Log(collision);
+            }
+        }
+    }
+
+    protected override void Kill()
+    {
+        FindObjectOfType<AudioManager>().Play("heal");
+        gameRef.onEnemyKill(this);
+    }
 
     public override void ZoneActivate()
 	{
@@ -79,7 +123,8 @@ public class HealingKit : Enemy
 
 	public override void PlayerActivate()
 	{
-		speed = 5.0f;
+        FindObjectOfType<AudioManager>().Play("healprep");
+        speed = 5.0f;
 		isInteractable = false;
 		SetTarget(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)));
 		ZoneActivate();
