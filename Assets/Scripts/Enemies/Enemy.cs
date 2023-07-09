@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected int health;
 	[SerializeField]
-	int scoreGiven;
+	protected int scoreGiven;
 
 	// Move variables
 	protected Player player;
@@ -203,7 +203,7 @@ public abstract class Enemy : MonoBehaviour {
 					LevelTracker.self.score += scoreGiven;
 				}
 				Debug.Log(collision.gameObject);
-			}else if (collision.tag == "Player") {
+			} else if (collision.tag == "Player") {
 				health = 0;
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;

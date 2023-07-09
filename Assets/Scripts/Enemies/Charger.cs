@@ -74,29 +74,24 @@ public class Charger : Enemy {
 		CheckCollisions();
 	}
 
-	public override void CheckCollisions()
-	{
-		foreach (Collider2D collision in collisions)
-		{
-			if (collision.tag == "Scrambling")
-			{
+	public override void CheckCollisions() {
+		foreach (Collider2D collision in collisions) {
+			if (collision.tag == "Scrambling") {
 				isSelected = false;
 				isScrambled = true;
-			}
-			else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
-			{
+			} else if (collision.tag == "Danger" || (collision.tag == "Bullet" && !isCharging)) {
 				health -= 1;
-			}
-			else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
-			{
-				isSelected = true;
-			}
-			else if (collision.gameObject.tag == "Death")
-			{
+				if (health == 0) {
+					LevelTracker.self.score += scoreGiven;
+				}
+				Debug.Log(collision.gameObject);
+			} else if (collision.tag == "Player") {
 				health = 0;
-			}
-			else
-			{
+			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
+				isSelected = true;
+			} else if (collision.gameObject.tag == "Death") {
+				health = 0;
+			} else {
 				Debug.Log(collision);
 			}
 		}
