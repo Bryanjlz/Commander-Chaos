@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (!isInvulnerable && collision.tag != "Selection" && collision.tag != "Zone")
+		if (!isInvulnerable && 
+			collision.tag != "Selection" && collision.tag != "Zone" && collision.tag != "Scrambling")
 		{
 			if (health > 0 && invulnTimer <= 0.0f)
 			{
