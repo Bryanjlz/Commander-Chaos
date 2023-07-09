@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2327893458167683161}
-  - component: {fileID: 2664742697783790113}
   - component: {fileID: 1934468642753728846}
   - component: {fileID: 7044629482342552592}
   - component: {fileID: 2892325128655764011}
+  - component: {fileID: 2664742697783790113}
   m_Layer: 0
   m_Name: Health
   m_TagString: Health
@@ -36,31 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2664742697783790113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145789467485804890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423f06fcefbe01c409da6ddb0706bae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInteractable: 0
-  health: 1
-  speed: 1
-  rb: {fileID: 2892325128655764011}
-  isHovered: 0
-  isSelected: 0
-  isScrambled: 0
-  collisions: []
-  borderRenderers:
-  - {fileID: 4426328208052642538}
-  deathParticles: {fileID: 3951109614342624886, guid: 20cbbe0ed9bb4e945ab27b5b92e318a3, type: 3}
-  spriteRenderers:
-  - {fileID: 1934468642753728846}
 --- !u!212 &1934468642753728846
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -185,6 +160,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2664742697783790113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145789467485804890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423f06fcefbe01c409da6ddb0706bae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInteractable: 0
+  health: 1
+  scoreGiven: 0
+  impulseSource: {fileID: 0}
+  speed: 1
+  rb: {fileID: 2892325128655764011}
+  isHovered: 0
+  isSelected: 0
+  isScrambled: 0
+  collisions: []
+  borderRenderers:
+  - {fileID: 4426328208052642538}
+  deathParticles: {fileID: 3951109614342624886, guid: 20cbbe0ed9bb4e945ab27b5b92e318a3, type: 3}
+  spriteRenderers:
+  - {fileID: 1934468642753728846}
 --- !u!1 &2345047452548369608
 GameObject:
   m_ObjectHideFlags: 0

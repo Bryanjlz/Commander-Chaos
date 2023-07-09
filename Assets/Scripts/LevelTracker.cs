@@ -5,7 +5,10 @@ using UnityEngine;
 public class LevelTracker : MonoBehaviour {
 	internal static LevelTracker self;
 
-	public LevelData currentLevel;
+	public float timeStart;
+	public int score;
+	[SerializeField]
+	public int scorePerSec;
 
 	void OnEnable() {
 		if (self != null) {
@@ -14,5 +17,20 @@ public class LevelTracker : MonoBehaviour {
 		}
 		DontDestroyOnLoad(gameObject);
 		self = this;
+	}
+
+	public void BeginLevel() {
+		StartCoroutine("TimeScore");
+	}
+
+	public void DoneLevel() {
+		StopCoroutine("TimeScore");
+	}
+
+	public IEnumerator TimeScore() {
+		while (true) {
+			yield return new WaitForSeconds(1);
+			score += scorePerSec;
+		}
 	}
 }

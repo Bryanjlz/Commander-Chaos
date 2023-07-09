@@ -6,6 +6,8 @@ using Cinemachine;
 public class LaserBomb : Enemy {
 
 	[SerializeField]
+	CinemachineImpulseSource impulseSource;
+	[SerializeField]
 	Collider2D collider;
 	[SerializeField]
 	List<Laser> lasers;
@@ -120,7 +122,7 @@ public class LaserBomb : Enemy {
 		rb.angularVelocity = 15;
 
 		// Screenshake
-		float shakeStrength = MyTools.negativeCube(Mathf.Clamp(transform.position.magnitude / 8f, 0, 0.9f)) * 1.5f;
+		float shakeStrength = MyTools.negativeCube(Mathf.Clamp(transform.position.magnitude / 8f, 0, 0.9f)) * 2f;
 		impulseSource.m_DefaultVelocity = transform.position / transform.position.magnitude * shakeStrength;
 		impulseSource.GenerateImpulseWithForce(1f);
 	}

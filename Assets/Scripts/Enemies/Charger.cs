@@ -9,6 +9,8 @@ public class Charger : Enemy {
 	private float turnStartTime;
 	[SerializeField]
 	float turnSpeed;
+	[SerializeField]
+	float chargeRange;
 
 	private Vector3 velocity = Vector3.zero;
 	private Quaternion targetRotation;
@@ -49,6 +51,10 @@ public class Charger : Enemy {
 			if (!isCharging && rb.velocity.magnitude >= speed) {
 				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 			}
+		}
+
+		if (!isCharging && Vector2.Distance(transform.position, player.transform.position) < chargeRange) {
+			ZoneActivate();
 		}
 	}
 
@@ -99,5 +105,33 @@ public class Charger : Enemy {
 		isInteractable = false;
 		transform.GetChild(0).gameObject.SetActive(true);
 		CheckCollisions();
+	}
+
+	public override void CheckCollisions()
+	{
+		foreach (Collider2D collision in collisions)
+		{
+			if (collision.tag == "Scrambling")
+			{
+				isSelected = false;
+				isScrambled = true;
+			}
+			else if (collision.tag == "Danger" || collision.tag == "Player" || (collision.tag == "Bullet" && !isCharging))
+			{
+				health -= 1;
+			}
+			else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
+			{
+				isSelected = true;
+			}
+			else if (collision.gameObject.tag == "Death")
+			{
+				health = 0;
+			}
+			else
+			{
+				Debug.Log(collision);
+			}
+		}
 	}
 }

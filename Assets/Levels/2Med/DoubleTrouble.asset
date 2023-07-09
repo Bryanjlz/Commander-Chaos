@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18544f410cbf9214d9c12e5cbcb0dc0a, type: 3}
-  m_Name: Test Level
+  m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
+  m_Name: DoubleTrouble
   m_EditorClassIdentifier: 
-  levelLength: 1
-  numEnemies: 00000000000000000000000003000000000000000000000000000000
+  weight: 5
+  cooldown: 0
+  minTime: 90
+  maxTime: 0
+  director: {fileID: 0}
+  levelLength: 4
+  numEnemies: 00000000000000000200000002000000
