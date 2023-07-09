@@ -9,5 +9,5 @@ public enum EnemyType {
 	BOMB,
 	ASTEROID,
 	X_BOMB,
-	SHIELDER
+	SCRAMBLER,
 }

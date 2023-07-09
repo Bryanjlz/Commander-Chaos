@@ -26,8 +26,8 @@ public class Bullet : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collision) {
 		// TODO: should bullets destroy other bullets?
 
-		// don't hit zones or selection
-		if (collision.tag == "Zone" || collision.tag == "Selection") {
+		// don't hit zones or selection or scrambler field
+		if (collision.tag == "Zone" || collision.tag == "Selection" || collision.tag == "Scrambling") {
 			return;
 		}
 		// don't hit the enemy spawning the bullet

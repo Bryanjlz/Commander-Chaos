@@ -238,6 +238,8 @@ MonoBehaviour:
   - {fileID: 6967687683188274498, guid: 3f199bb712e92fa4a9a65573970a6f0d, type: 3}
   - {fileID: 0}
   - {fileID: 7643051329015321963, guid: 77d6441a3184e0c4a9da8852f3e237c1, type: 3}
+  - {fileID: 7643051329015321963, guid: 77d6441a3184e0c4a9da8852f3e237c1, type: 3}
+  - {fileID: 2597953974994281711, guid: b464ffde740b2a84ba98bba14908a51c, type: 3}
   gameOverScreen: {fileID: 1201627063}
   enemiesLeft: 0
   timeStart: 0
@@ -367,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameRef: {fileID: 0}
   healthBar: {fileID: 1063607936}
-  maxHealth: 3
+  maxHealth: 100
   maxInvulnTime: 1
   invulnTimer: 0
   isInvulnerable: 0

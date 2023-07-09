@@ -9,6 +9,7 @@ TagManager:
   - Death
   - Enemy
   - Zone
+  - Scrambling
   layers:
   - Default
   - TransparentFX

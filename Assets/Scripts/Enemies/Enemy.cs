@@ -159,8 +159,13 @@ public abstract class Enemy : MonoBehaviour {
 
 	public virtual void CheckCollisions() {
 		foreach (Collider2D collision in collisions) {
-			if (collision.tag == "Danger" || collision.tag == "Player") {
+			if (collision.tag == "Scrambling")
+			{
+				isInteractable = false;
+				isSelected = false;
+			} else if (collision.tag == "Danger" || collision.tag == "Player") {
 				health -= 1;
+				Debug.Log(collision.gameObject);
 			} else if (isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
 			} else if (collision.gameObject.tag == "Death") {
