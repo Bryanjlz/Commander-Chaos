@@ -28,7 +28,8 @@ public class BasicShooter : Enemy {
 	}
 
 	public override void ZoneActivate() {
-		GameObject bullet = Instantiate(bulletPrefab);
+        isInteractable = false;
+        GameObject bullet = Instantiate(bulletPrefab);
 		bullet.GetComponent<Bullet>().Setup(gameObject, unitVel);
 		myBullets.Add(bullet);
 		health = 0;
