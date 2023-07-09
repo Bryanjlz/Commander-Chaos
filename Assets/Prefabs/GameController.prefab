@@ -76,11 +76,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
   - {fileID: 11400000, guid: 27651fd26f1ea6646b8cfc1e63c78145, type: 2}
   - {fileID: 11400000, guid: 3d37b0d42aaf3e44cb800b75e37189eb, type: 2}
+  - {fileID: 11400000, guid: 00d16f232ca1708488e16295f539d342, type: 2}
+  - {fileID: 11400000, guid: 35973acbd50588c46aa683f87a2de965, type: 2}
+  - {fileID: 11400000, guid: edd31bc286ae43e4db10c65b8b66db72, type: 2}
+  - {fileID: 11400000, guid: e7302874bd92efb43bd4b8ddcad0cba9, type: 2}
+  - {fileID: 11400000, guid: b66b873aec2de564fbbeec2c611a68f8, type: 2}
   inUsePassiveWaves: []
   activeWaves:
   - {fileID: 11400000, guid: 671e0f9fac2ff1f4ca92228912c269fa, type: 2}
   - {fileID: 11400000, guid: 52a10a533ff43c94bad5d8f005f15f5b, type: 2}
   - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
+  - {fileID: 11400000, guid: 73e26664abb49f249912d6727d963790, type: 2}
+  - {fileID: 11400000, guid: 5481af39fad82da4cb5cfb41b649fe78, type: 2}
+  - {fileID: 11400000, guid: 302ddfc76367c454782e71390a9b7a80, type: 2}
   inUseActiveWaves: []
   gc: {fileID: 8330647137529568635}
   timeStart: 0
