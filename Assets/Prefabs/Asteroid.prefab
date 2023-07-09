@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7184067390271326190
 SpriteRenderer:
@@ -178,9 +178,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteractable: 0
-  health: 3
+  health: 1
   speed: 1
   rb: {fileID: 3379375547219289385}
   isHovered: 0
   isSelected: 0
   collisions: []
+  borderRenderers: []
+  deathParticles: {fileID: 0}
+  spriteRenderers: []
