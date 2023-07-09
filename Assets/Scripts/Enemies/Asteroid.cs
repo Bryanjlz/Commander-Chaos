@@ -22,8 +22,16 @@ public class Asteroid : Enemy {
 		Vector2 deltaPos = target - transform.position;
 		unitVel = deltaPos / deltaPos.magnitude;
 	}
+    public override void BorderChange()
+    {
+        for (int i = 0; i < borderRenderers.Length; i++)
+        {
+            borderRenderers[i].color = new Color(1f, 0.25f, 0.25f);
+            borderRenderers[i].enabled = true;
+        }
+    }
 
-	public override void PlayerActivate() {
+    public override void PlayerActivate() {
 		// It's a rock, why would it do things
 	}
 

@@ -551,6 +551,7 @@ MonoBehaviour:
   spriteRenderers:
   - {fileID: 3588590516209602280}
   - {fileID: 5642721212077967866}
+  turnSpeed: 0.5
   laser: {fileID: 6607446400832695044}
   laserRange: 8
   laserChargeTime: 3

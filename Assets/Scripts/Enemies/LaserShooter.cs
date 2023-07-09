@@ -5,6 +5,8 @@ using UnityEngine;
 public class LaserShooter : Enemy {
 
 	[SerializeField]
+	float turnSpeed;
+	[SerializeField]
 	Laser laser;
 	[SerializeField]
 	[Tooltip("How far from center will laser stop")]
@@ -16,6 +18,8 @@ public class LaserShooter : Enemy {
 	private bool startLaser;
 	private float laserStartTime;
 	private Vector3 laserTarget;
+	private Vector3 velocity = Vector3.zero;
+	private Quaternion targetRotation;
 
 	public override void Setup(Player player, GameController gameRef) {
         isInteractable = false;
@@ -31,13 +35,15 @@ public class LaserShooter : Enemy {
 
 		Vector3 VectorToTarget = laserTarget - transform.position;
 		Vector3 rotatedVectorToTarget = Quaternion.Euler(0, 0, 90) * VectorToTarget;
-		Quaternion targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
-		transform.rotation = targetRotation;
+		targetRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorToTarget);
 	}
 
 	public override void DefaultBehaviour() {
-		// Set Target to middle
+		// Set Target
 		SetTarget(player.transform.position);
+
+		// Rotate
+		transform.rotation = MyTools.SmoothDampQuaternion(transform.rotation, targetRotation, ref velocity, turnSpeed);
 
 		if (!startLaser) {
 			// Move
@@ -46,8 +52,8 @@ public class LaserShooter : Enemy {
 				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 			}
 
+
 			// Start shoot sequence if in range
-			print(Vector2.Distance(player.transform.position, transform.position));
 			if (Vector2.Distance(player.transform.position, transform.position) <= laserRange) {
 				StartLaser();
 			}
