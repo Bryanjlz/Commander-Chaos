@@ -375,9 +375,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameRef: {fileID: 0}
   healthBar: {fileID: 1063607936}
-  sprites: {fileID: 0}
-  maxHealth: 100
-  health: 3
+  sprites: {fileID: 1328336065}
+  maxHealth: 5
+  health: 5
   maxInvulnTime: 1
   invulnTimer: 0
   isInvulnerable: 0
