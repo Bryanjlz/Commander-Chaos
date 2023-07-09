@@ -15,7 +15,7 @@ MonoBehaviour:
   weight: 5
   cooldown: 0
   minTime: 0
-  maxTime: 30
+  maxTime: 60
   director: {fileID: 7146891656834963952, guid: 3ccbcd6763355eb4fa587cd4610965f1, type: 3}
   levelLength: 1
   numEnemies: 010000000000000000000000000000000000000000000000

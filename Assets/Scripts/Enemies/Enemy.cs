@@ -192,10 +192,11 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Scrambling")
-		{
+        if (collision.tag == "Scrambling") {
             isScrambled = false;
-        }
+        } else if (collision.tag == "Selection" && Input.GetMouseButton(0)) {
+			isSelected = false;
+		}
 
         collisions.Remove(collision);
 	}

@@ -17,5 +17,5 @@ MonoBehaviour:
   minTime: 0
   maxTime: 60
   director: {fileID: 7146891656834963952, guid: 3ccbcd6763355eb4fa587cd4610965f1, type: 3}
-  levelLength: 15
-  numEnemies: 0f000000
+  levelLength: 0
+  numEnemies: 0a000000

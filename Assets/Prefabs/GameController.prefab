@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4296057829482879275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8094688245598294338}
+  - component: {fileID: 8330647137529568635}
+  - component: {fileID: 9187474046275415304}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8094688245598294338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296057829482879275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8330647137529568635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296057829482879275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e48271b109c0f94408437b6669076427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  level: {fileID: 0}
+  currentEnemies: []
+  enemyPrefabs:
+  - {fileID: 6082422220084629207, guid: 0097f96f9ecd6b647b89875e6e0c0883, type: 3}
+  - {fileID: 3451666499490398099, guid: 3de42f81ea4aaf14ca82962fceb912a4, type: 3}
+  - {fileID: 6967687683188274498, guid: 3f199bb712e92fa4a9a65573970a6f0d, type: 3}
+  - {fileID: 6362491487427798129, guid: ed6dd98da34c50c4ca5ff1e7761a0626, type: 3}
+  - {fileID: 7643051329015321963, guid: 77d6441a3184e0c4a9da8852f3e237c1, type: 3}
+  - {fileID: 1145789467485804890, guid: 40edf29d993c6ad42bbed7c96c5a680a, type: 3}
+  - {fileID: 2597953974994281711, guid: b464ffde740b2a84ba98bba14908a51c, type: 3}
+  gameOverScreen: {fileID: 0}
+  enemiesLeft: 0
+  timeStart: 0
+--- !u!114 &9187474046275415304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296057829482879275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd96bbd5a02f3f6489c666877ae3e113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passiveWaves:
+  - {fileID: 11400000, guid: ff28af01ea281294a94167a08690a577, type: 2}
+  - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
+  - {fileID: 11400000, guid: 27651fd26f1ea6646b8cfc1e63c78145, type: 2}
+  - {fileID: 11400000, guid: 3d37b0d42aaf3e44cb800b75e37189eb, type: 2}
+  inUsePassiveWaves: []
+  activeWaves:
+  - {fileID: 11400000, guid: 671e0f9fac2ff1f4ca92228912c269fa, type: 2}
+  - {fileID: 11400000, guid: 52a10a533ff43c94bad5d8f005f15f5b, type: 2}
+  - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
+  inUseActiveWaves: []
+  gc: {fileID: 8330647137529568635}
+  timeStart: 0
+  timeBetweenPassiveWaves: 2
+  timeBetweenActiveWaves: 10
+  passiveWeightSum: 0
+  activeWeightSum: 0
