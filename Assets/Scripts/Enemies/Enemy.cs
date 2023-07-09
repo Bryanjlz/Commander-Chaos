@@ -186,7 +186,7 @@ public abstract class Enemy : MonoBehaviour {
 			{
 				isSelected = false;
                 isScrambled = true;
-            } else if (collision.tag == "Danger" || collision.tag == "Player") {
+            } else if (collision.tag == "Danger" || collision.tag == "Player" || collision.tag == "Bullet") {
 				health -= 1;
 				Debug.Log(collision.gameObject);
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
