@@ -219,7 +219,7 @@ MonoBehaviour:
   collisions: []
   borderRenderers:
   - {fileID: 8484794895961521466}
-  deathParticles: {fileID: 0}
+  deathParticles: {fileID: 3951109614342624886, guid: 5848bb3ea5b78844f9934c5538329ee3, type: 3}
   spriteRenderers:
   - {fileID: 7719008481004827337}
   zoneOfScrambling: {fileID: 2168941765028031244}

@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField] //TODO: DELETE LATER
 	bool isHovered;
 	public bool isSelected;
+	public bool isScrambled = false;
 
     protected bool isActivated = false;
     protected bool isZoneActivated = false;
@@ -103,24 +104,29 @@ public abstract class Enemy : MonoBehaviour {
 		DefaultBehaviour();
 
 		// Borders and interactibility
-		if (borderRenderers.Length != 0)
-		{
-			if (!isInteractable)
-			{
-				for (int i = 0; i < borderRenderers.Length; i++)
-				{
-					Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
-					spriteRenderers[i].color = Color.HSVToRGB(H, 0.75f, 0.75f);
-					borderRenderers[i].color = new Color(1f, 0.25f, 0.25f);
-					borderRenderers[i].enabled = true;
-				}
+		BorderChange();
+    }
+
+	public virtual void BorderChange()
+	{
+        if (borderRenderers.Length != 0)
+        {
+            if (!isInteractable || isScrambled)
+            {
+                for (int i = 0; i < borderRenderers.Length; i++)
+                {
+                    Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
+                    spriteRenderers[i].color = Color.HSVToRGB(H, 0.75f, 0.75f);
+                    borderRenderers[i].color = new Color(1f, 0.25f, 0.25f);
+                    borderRenderers[i].enabled = true;
+                }
             }
             else if (isSelected)
             {
                 for (int i = 0; i < borderRenderers.Length; i++)
                 {
                     Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
-					spriteRenderers[i].color = originalColor;
+                    spriteRenderers[i].color = originalColor;
                     borderRenderers[i].color = Color.white;
                     borderRenderers[i].enabled = true;
                 }
@@ -130,13 +136,12 @@ public abstract class Enemy : MonoBehaviour {
                 for (int i = 0; i < borderRenderers.Length; i++)
                 {
                     Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
-					spriteRenderers[i].color = originalColor;
+                    spriteRenderers[i].color = originalColor;
                     borderRenderers[i].enabled = false;
                 }
             }
-		}
+        }
     }
-
 	public abstract void DefaultBehaviour();
 
 	public abstract void PlayerActivate();
@@ -169,7 +174,7 @@ public abstract class Enemy : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D collision) {
         if (collision.tag == "Scrambling")
 		{
-            isInteractable = true;
+            isScrambled = false;
         }
 
         collisions.Remove(collision);
@@ -179,12 +184,12 @@ public abstract class Enemy : MonoBehaviour {
 		foreach (Collider2D collision in collisions) {
 			if (collision.tag == "Scrambling")
 			{
-				isInteractable = false;
 				isSelected = false;
-			} else if (collision.tag == "Danger" || collision.tag == "Player") {
+                isScrambled = true;
+            } else if (collision.tag == "Danger" || collision.tag == "Player") {
 				health -= 1;
 				Debug.Log(collision.gameObject);
-			} else if (isInteractable && collision.gameObject.tag == "Selection") {
+			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
 			} else if (collision.gameObject.tag == "Death") {
 				health = 0;

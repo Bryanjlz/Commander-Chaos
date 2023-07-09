@@ -48,6 +48,12 @@ public class Player : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collision)
 	{
+		if (collision.tag == "Health" && health < maxHealth)
+		{
+			++health;
+			return;
+		}
+
 		if (!isInvulnerable && 
 			collision.tag != "Selection" && collision.tag != "Zone" && collision.tag != "Scrambling")
 		{
