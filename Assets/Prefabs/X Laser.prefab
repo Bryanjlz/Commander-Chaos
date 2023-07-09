@@ -895,7 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable: 0
   health: 1
-  scoreGiven: 15
+  scoreGiven: 50
   impulseSource: {fileID: 270725924148250940}
   speed: 5
   rb: {fileID: 316579717867987669}
@@ -916,6 +916,7 @@ MonoBehaviour:
   - {fileID: 5838538587245811822}
   - {fileID: 3796498840181729191}
   - {fileID: 7273886886028020653}
+  impulseSource: {fileID: 270725924148250940}
   collider: {fileID: 2176576503106891519}
   lasers:
   - {fileID: 6196335283166061612}

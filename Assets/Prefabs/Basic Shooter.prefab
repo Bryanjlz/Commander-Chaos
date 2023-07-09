@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isInteractable: 1
   health: 1
-  scoreGiven: 5
+  scoreGiven: 25
   impulseSource: {fileID: 0}
   speed: 1
   rb: {fileID: 7239406462258756729}
