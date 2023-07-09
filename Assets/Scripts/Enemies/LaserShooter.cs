@@ -18,7 +18,8 @@ public class LaserShooter : Enemy {
 	private Vector3 laserTarget;
 
 	public override void Setup(Player player, GameController gameRef) {
-		base.Setup(player, gameRef);
+        isInteractable = false;
+        base.Setup(player, gameRef);
 		laser.Setup(laserSustainTime, laserChargeTime);
 		laserTarget = player.transform.position;
 	}
@@ -57,7 +58,8 @@ public class LaserShooter : Enemy {
 	}
 
 	private void StartLaser() {
-		startLaser = true;
+        isInteractable = true;
+        startLaser = true;
 		speed = 0;
 		rb.velocity = Vector2.zero;
 		laserStartTime = Time.time;

@@ -548,6 +548,9 @@ MonoBehaviour:
   - {fileID: 1291091312441389254}
   - {fileID: 6807554607337404166}
   deathParticles: {fileID: 3951109614342624886, guid: 673ea6aca3dcc2041bea0c8be3b0d2f9, type: 3}
+  spriteRenderers:
+  - {fileID: 3588590516209602280}
+  - {fileID: 5642721212077967866}
   laser: {fileID: 6607446400832695044}
   laserRange: 8
   laserChargeTime: 3
@@ -626,7 +629,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.47569162, g: 0.22745097, b: 1, a: 1}
+  m_Color: {r: 0.47450987, g: 0.22745097, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
