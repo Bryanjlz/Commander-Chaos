@@ -26,7 +26,7 @@ public class Asteroid : Enemy {
     {
         for (int i = 0; i < borderRenderers.Length; i++)
         {
-            borderRenderers[i].color = new Color(1f, 0.25f, 0.8f);
+            borderRenderers[i].color = new Color(1f, 0.25f, 0.25f);
             borderRenderers[i].enabled = true;
         }
     }
