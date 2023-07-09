@@ -167,7 +167,12 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D collision) {
-		collisions.Remove(collision);
+        if (collision.tag == "Scrambling")
+		{
+            isInteractable = true;
+        }
+
+        collisions.Remove(collision);
 	}
 
 	public virtual void CheckCollisions() {
