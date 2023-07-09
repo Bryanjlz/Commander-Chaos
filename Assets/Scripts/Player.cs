@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 	public GameObject healthBar;
 
 	public int maxHealth = 3;
+	[SerializeField]
 	private int health = 3;
 
 	[SerializeField]
