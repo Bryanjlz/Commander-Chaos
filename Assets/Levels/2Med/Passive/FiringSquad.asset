@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d916f5678d572bc4283b0281775762c6, type: 3}
-  m_Name: MeteorShower
+  m_Script: {fileID: 11500000, guid: d4398c108ebacf34396408457f7cb4db, type: 3}
+  m_Name: FiringSquad
   m_EditorClassIdentifier: 
-  weight: 3
+  weight: 5
   cooldown: 0
   minTime: 60
-  maxTime: 0
-  director: {fileID: 6045129376529520863, guid: 2fdc43675e2c2fc40bc50838a2ae1b4f, type: 3}
+  maxTime: 120
+  director: {fileID: 7146891656834963952, guid: 3ccbcd6763355eb4fa587cd4610965f1, type: 3}
+  levelLength: 0
+  numEnemies: 0000000005000000

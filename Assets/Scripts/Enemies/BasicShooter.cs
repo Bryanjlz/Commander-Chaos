@@ -5,8 +5,6 @@ using UnityEngine;
 public class BasicShooter : Enemy {
 	[SerializeField]
 	private GameObject bulletPrefab;
-	[SerializeField]
-	float shootRange;
 	List<GameObject> myBullets;
 
 	public override void Setup(Player player, GameController gameRef) {
@@ -22,10 +20,6 @@ public class BasicShooter : Enemy {
 		if (rb.velocity.magnitude >= speed) {
 			rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 		}
-
-		if (Vector2.Distance(transform.position, player.transform.position) < shootRange) {
-			ZoneActivate();
-		}
 	}
 
     public override void PlayerActivate() {
@@ -34,7 +28,6 @@ public class BasicShooter : Enemy {
 	}
 
 	public override void ZoneActivate() {
-		SetTarget(Vector3.zero);
         isInteractable = false;
         GameObject bullet = Instantiate(bulletPrefab);
 

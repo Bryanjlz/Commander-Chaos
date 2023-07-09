@@ -93,10 +93,6 @@ public class GameController : MonoBehaviour {
 		{
 			enemy.SetForcedSpawn(new Vector2(x, y));
 		}
-		switch (enemyType)
-		{
-			// Add cases for special Setup calls
-		}
 
 		AddEnemy(enemy);
 	}

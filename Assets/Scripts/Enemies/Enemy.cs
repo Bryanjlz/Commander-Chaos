@@ -5,7 +5,7 @@ using Cinemachine;
 
 public abstract class Enemy : MonoBehaviour {
 	// For spawning
-	private readonly float X_POS_MAX = 19;
+	private readonly float X_POS_MAX = 11;
 	private readonly float Y_POS_MAX = 11;
 
 	// Set in editor
@@ -192,10 +192,11 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D collision) {
-        if (collision.tag == "Scrambling")
-		{
+        if (collision.tag == "Scrambling") {
             isScrambled = false;
-        }
+        } else if (collision.tag == "Selection" && Input.GetMouseButton(0)) {
+			isSelected = false;
+		}
 
         collisions.Remove(collision);
 	}
