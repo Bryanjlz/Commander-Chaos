@@ -954,7 +954,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME
+  m_text: 'COMMANDER
+
+    CHAOS'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d90650a9d39c8a4d9db2f690950c30a, type: 2}
   m_sharedMaterial: {fileID: -4949732068614290688, guid: 9d90650a9d39c8a4d9db2f690950c30a, type: 2}

@@ -376,8 +376,8 @@ MonoBehaviour:
   gameRef: {fileID: 0}
   healthBar: {fileID: 1063607936}
   sprites: {fileID: 1328336065}
-  maxHealth: 100
-  health: 3
+  maxHealth: 5
+  health: 5
   maxInvulnTime: 1
   invulnTimer: 0
   isInvulnerable: 0
@@ -604,6 +604,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &738033097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1340677014332323775, guid: 2f5d458c77b18b7449af4a28ffe383db, type: 3}
+  m_PrefabInstance: {fileID: 1201627062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &768627500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1853,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 485203096}
+    - target: {fileID: 8330647137529568635, guid: 2fb43e0154d22e04a8920482b07c7e9f, type: 3}
+      propertyPath: gameOverScreen
+      value: 
+      objectReference: {fileID: 738033097}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
