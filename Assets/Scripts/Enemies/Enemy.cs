@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour {
 	[SerializeField]
 	protected int health;
 	[SerializeField]
-	int scoreGiven;
+	protected int scoreGiven;
 
 	// Move variables
 	protected Player player;
@@ -212,6 +212,10 @@ public abstract class Enemy : MonoBehaviour {
 				}
 				Debug.Log(collision.gameObject);
 			} else if (collision.tag == "Player") {
+				health = 0;
+			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
+				isSelected = true;
+			} else if (collision.gameObject.tag == "Death") {
 				health = 0;
 			} else if (!isSelected && !isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
                 isSelected = true;
