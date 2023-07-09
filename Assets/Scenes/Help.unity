@@ -3018,7 +3018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1211535574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3789,7 +3789,7 @@ MonoBehaviour:
     Charges over time, then fires four rotating lasers!
 
     On
-    command, it self-destructs.'
+    command, it fires early.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d90650a9d39c8a4d9db2f690950c30a, type: 2}
   m_sharedMaterial: {fileID: -4949732068614290688, guid: 9d90650a9d39c8a4d9db2f690950c30a, type: 2}
@@ -3881,7 +3881,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1431089301
 RectTransform:
   m_ObjectHideFlags: 0
