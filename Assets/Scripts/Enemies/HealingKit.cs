@@ -15,4 +15,18 @@ public class HealingKit : Enemy
     {
         
     }
+
+	public override void DefaultBehaviour()
+	{
+	}
+
+	public override void ZoneActivate()
+	{
+
+	}
+
+	public override void PlayerActivate()
+	{
+
+	}
 }
