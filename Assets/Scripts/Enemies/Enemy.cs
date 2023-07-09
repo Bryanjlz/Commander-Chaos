@@ -166,9 +166,17 @@ public abstract class Enemy : MonoBehaviour {
 	}
 
 	protected virtual void Kill() {
+        int randomNum = Random.Range(1, 9);
+        FindObjectOfType<AudioManager>().Play("death" + randomNum);
         gameRef.onEnemyKill(this);
     }
-	public virtual void SetTarget(Vector3 target) {
+
+    protected virtual void DeafKill()
+	{
+        gameRef.onEnemyKill(this);
+    }
+
+    public virtual void SetTarget(Vector3 target) {
 		// set direction
 		Vector2 deltaPos = target - transform.position;
 		unitVel = deltaPos / deltaPos.magnitude;
@@ -201,10 +209,13 @@ public abstract class Enemy : MonoBehaviour {
             } else if (collision.tag == "Danger" || collision.tag == "Player" || collision.tag == "Bullet") {
 				health -= 1;
 				Debug.Log(collision.gameObject);
-			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
-				isSelected = true;
-			} else if (collision.gameObject.tag == "Death") {
-				health = 0;
+			} else if (!isSelected && !isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
+                isSelected = true;
+                int randomNum = Random.Range(1, 6);
+                FindObjectOfType<AudioManager>().Play("s" + randomNum);
+            } else if (collision.gameObject.tag == "Death") {
+				// health = 0;
+				DeafKill();
 			} else {
 				Debug.Log(collision);
 			}

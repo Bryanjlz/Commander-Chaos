@@ -32,7 +32,10 @@ public class LaserBomb : Enemy {
 
 	protected override void Kill() {
 		gameRef.onEnemyKill(this);
-	}
+        int randomNum = Random.Range(1, 9);
+        FindObjectOfType<AudioManager>().Play("death" + randomNum);
+        FindObjectOfType<AudioManager>().Stop("Laser");
+    }
 
 	private Vector2 FindTarget() {
 		bool foundTarget = false;
@@ -84,8 +87,9 @@ public class LaserBomb : Enemy {
 				}
 				break;
 			case LaserState.FIRING:
-				// Done Firing
-				if (Time.time - laserStateStartTime > laserSustainTime) {
+                FindObjectOfType<AudioManager>().Play("Laser");
+                // Done Firing
+                if (Time.time - laserStateStartTime > laserSustainTime) {
 					state = LaserState.STOPPING;
 					laserStateStartTime = Time.time;
 				}
@@ -132,7 +136,7 @@ public class LaserBomb : Enemy {
 	public override void ZoneActivate() {
 	}
 
-	private enum LaserState {
+    private enum LaserState {
 		CHARGING,
 		FIRING,
 		STOPPING,

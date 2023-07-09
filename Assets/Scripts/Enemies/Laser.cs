@@ -45,7 +45,8 @@ public class Laser : MonoBehaviour {
 				sprite.enabled = true;
 				if ((int)(timeSinceLaserStart * 2) % 2 == 0) {
 					sprite.color = laserFlash;
-				} else {
+                    FindObjectOfType<AudioManager>().Play("laserwarn");
+                } else {
 					sprite.color = laserIndicator;
 				}
 				if (timeSinceLaserStart >= laserChargeTime) {

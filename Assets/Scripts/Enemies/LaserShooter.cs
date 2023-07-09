@@ -71,7 +71,8 @@ public class LaserShooter : Enemy {
                 }
 				break;
 			case LaserState.FIRING:
-				speed = 0;
+                FindObjectOfType<AudioManager>().Play("Laser");
+                speed = 0;
                 // Done Firing
                 turnSpeed = 1.5f;
                 if (Time.time - laserStateStartTime > laserSustainTime) {
@@ -100,7 +101,15 @@ public class LaserShooter : Enemy {
 		laser.StartLaser(laserStateStartTime);
 	}
 
-	public override void PlayerActivate() {
+    protected override void Kill()
+    {
+        FindObjectOfType<AudioManager>().Stop("Laser");
+        int randomNum = Random.Range(1, 9);
+        FindObjectOfType<AudioManager>().Play("death" + randomNum);
+        gameRef.onEnemyKill(this);
+    }
+
+    public override void PlayerActivate() {
 		laserTarget = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
 	}
 

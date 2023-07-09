@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8882719838148540996, guid: 93a8e776df1f59d409a0b73a6d138509, type: 3}
+      propertyPath: sounds.Array.data[14].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f2e86954213b1ab4dbc105178514d334, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -271,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159766584}
   - component: {fileID: 159766583}
+  - component: {fileID: 159766585}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -334,12 +339,12 @@ MonoBehaviour:
   passiveWaves:
   - {fileID: 11400000, guid: d37fa7464f3dc8d40a66914ea2186bf4, type: 2}
   activeWaves:
-  - {fileID: 11400000, guid: 0393e5466a7122a4a8424b0593cd809a, type: 2}
+  - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   - {fileID: 11400000, guid: 1aed421485866dc41877f790e9e54aa3, type: 2}
   gc: {fileID: 159766583}
   timeStart: 0
-  timeBetweenPassiveWaves: 5
-  timeBetweenActiveWaves: 15
+  timeBetweenPassiveWaves: 2
+  timeBetweenActiveWaves: 10
   passiveWeightSum: 0
   activeWeightSum: 0
 --- !u!1 &468653178

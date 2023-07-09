@@ -53,6 +53,7 @@ public class Charger : Enemy {
 	}
 
 	public override void PlayerActivate() {
+		FindObjectOfType<AudioManager>().Play("Charger");
         isInteractable = false;
 		isTurning = true;
 		turnStartTime = Time.time;
@@ -77,11 +78,14 @@ public class Charger : Enemy {
             }
             else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection")
             {
+                int randomNum = Random.Range(1, 4);
+                FindObjectOfType<AudioManager>().Play("s" + randomNum);
                 isSelected = true;
             }
             else if (collision.gameObject.tag == "Death")
             {
-                health = 0;
+				DeafKill();
+                // health = 0;
             }
             else
             {

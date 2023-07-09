@@ -16,7 +16,8 @@ public class Scrambler : Enemy
     // Start is called before the first frame update
     public override void Setup(Player player, GameController gameRef)
 	{
-		base.Setup(player, gameRef);
+        FindObjectOfType<AudioManager>().Play("Scrambler");
+        base.Setup(player, gameRef);
 		SetTarget(player.transform.position);
 
 		fieldSize = 0.0f;
@@ -55,7 +56,15 @@ public class Scrambler : Enemy
 		}
 	}
 
-	public override void ZoneActivate()
+    protected override void Kill()
+    {
+        FindObjectOfType<AudioManager>().Stop("Scrambler");
+        int randomNum = Random.Range(1, 9);
+        FindObjectOfType<AudioManager>().Play("death" + randomNum);
+        gameRef.onEnemyKill(this);
+    }
+
+    public override void ZoneActivate()
 	{
 
 	}
