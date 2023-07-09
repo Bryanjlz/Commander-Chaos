@@ -19,7 +19,8 @@ public class LaserBomb : Enemy {
 	private LaserState state = LaserState.NONE;
 	private Vector2 target;
 
-	public override void Setup(Player player, GameController gameRef) {
+    private bool sounded = false;
+    public override void Setup(Player player, GameController gameRef) {
 		base.Setup(player, gameRef);
 		foreach (Laser laser in lasers) {
 			laser.Setup(laserSustainTime, laserChargeTime);
@@ -89,7 +90,11 @@ public class LaserBomb : Enemy {
 				}
 				break;
 			case LaserState.FIRING:
-                FindObjectOfType<AudioManager>().Play("Laser");
+                if (!sounded)
+                {
+                    FindObjectOfType<AudioManager>().Play("Laser");
+                    sounded = true;
+                }
                 // Done Firing
                 if (Time.time - laserStateStartTime > laserSustainTime) {
 					state = LaserState.STOPPING;

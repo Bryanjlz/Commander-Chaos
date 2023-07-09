@@ -25,6 +25,8 @@ public class LaserShooter : Enemy {
 	private Vector3 velocity = Vector3.zero;
 	private Quaternion targetRotation;
 
+	private bool sounded = false;
+
 	public override void Setup(Player player, GameController gameRef) {
         isInteractable = false;
         base.Setup(player, gameRef);
@@ -63,15 +65,21 @@ public class LaserShooter : Enemy {
 				}
 				break;
 			case LaserState.CHARGING:
+				
 				// Done Charging
 				if (Time.time - laserStateStartTime > laserChargeTime) {
 					state = LaserState.FIRING;
-					laserStateStartTime = Time.time;
+                    laserStateStartTime = Time.time;
                     rb.velocity = rb.velocity / 3;
                 }
 				break;
 			case LaserState.FIRING:
-                FindObjectOfType<AudioManager>().Play("Laser");
+                if (!sounded)
+				{
+                    FindObjectOfType<AudioManager>().Play("Laser");
+                    sounded = true;
+				}
+                    
                 speed = 0;
                 // Done Firing
                 turnSpeed = 1.5f;
@@ -82,8 +90,9 @@ public class LaserShooter : Enemy {
 				}
 				break;
 			case LaserState.COOLDOWN:
-				// Done cooldown
-				turnSpeed = 0.5f;
+                sounded = false;
+                // Done cooldown
+                turnSpeed = 0.5f;
 				if (Time.time - laserStateStartTime > laserCooldownTime) {
 					state = LaserState.NONE;
 					laserStateStartTime = Time.time;

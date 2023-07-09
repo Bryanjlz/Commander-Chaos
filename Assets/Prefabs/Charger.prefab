@@ -337,7 +337,6 @@ MonoBehaviour:
   isInteractable: 1
   health: 1
   scoreGiven: 25
-  impulseSource: {fileID: 0}
   speed: 1
   rb: {fileID: 4121703192406080648}
   isHovered: 0
@@ -350,4 +349,4 @@ MonoBehaviour:
   spriteRenderers:
   - {fileID: 7243884199531012187}
   turnSpeed: 0.1
-  chargeRange: 5
+  chargeRange: 0

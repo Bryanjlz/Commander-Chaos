@@ -216,11 +216,9 @@ public abstract class Enemy : MonoBehaviour {
 				health = 0;
 			} else if (!isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
 				isSelected = true;
-			} else if (collision.gameObject.tag == "Death") {
-				health = 0;
 			} else if (!isSelected && !isScrambled && isInteractable && collision.gameObject.tag == "Selection") {
                 isSelected = true;
-                int randomNum = Random.Range(1, 6);
+                int randomNum = Random.Range(1, 4);
                 FindObjectOfType<AudioManager>().Play("s" + randomNum);
             } else if (collision.gameObject.tag == "Death") {
 				// health = 0;
