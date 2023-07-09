@@ -47,10 +47,6 @@ public class HelpScreenController : MonoBehaviour
 				break;
 			case 1:
 				SetButtonText(LEFT, "< Back");
-				SetButtonText(RIGHT, "Next >");
-				break;
-			case 2:
-				SetButtonText(LEFT, "< Back");
 				SetButtonText(RIGHT, "Play! >");
 				break;
 			default:
@@ -68,9 +64,6 @@ public class HelpScreenController : MonoBehaviour
 			case 1:
 				GoToPrevPage();
 				break;
-			case 2:
-				GoToPrevPage();
-				break;
 			default:
 				Debug.Log("Something went wrong");
 				return;
@@ -85,9 +78,6 @@ public class HelpScreenController : MonoBehaviour
 				GoToNextPage();
 				break;
 			case 1:
-				GoToNextPage();
-				break;
-			case 2:
 				GoToScene("BryanScene");
 				break;
 			default:
