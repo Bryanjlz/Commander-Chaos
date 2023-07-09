@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18544f410cbf9214d9c12e5cbcb0dc0a, type: 3}
   m_Name: Test Level
   m_EditorClassIdentifier: 
-  levelLength: 10
-  numEnemies: 00000000000000000000000000000000000000000000000064000000
+  levelLength: 1
+  numEnemies: 01000000010000000100000001000000010000000000000000000000

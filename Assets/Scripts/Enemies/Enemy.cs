@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour {
 	bool isHovered;
 	public bool isSelected;
 
-	protected bool isActivated = false;
+    protected bool isActivated = false;
     protected bool isZoneActivated = false;
     protected GameController gameRef;
 
@@ -39,13 +39,21 @@ public abstract class Enemy : MonoBehaviour {
     [SerializeField]
     protected ParticleSystem deathParticles;
 
+    [SerializeField]
+    protected SpriteRenderer[] spriteRenderers;
+	protected Color originalColor;
+
     public void Start()
     {
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            originalColor = spriteRenderers[i].color;
+        }
         if (borderRenderers.Length != 0)
-		{
-			for (int i = 0; i < borderRenderers.Length; i++)
-			{
-				borderRenderers[i].enabled = false;
+        {
+            for (int i = 0; i < borderRenderers.Length; i++)
+            {
+                borderRenderers[i].enabled = false;
             }
         }
     }
@@ -94,30 +102,35 @@ public abstract class Enemy : MonoBehaviour {
 		}
 		DefaultBehaviour();
 
-		// Borders
+		// Borders and interactibility
 		if (borderRenderers.Length != 0)
 		{
-            if (isSelected)
+			if (!isInteractable)
+			{
+				for (int i = 0; i < borderRenderers.Length; i++)
+				{
+					Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
+					spriteRenderers[i].color = Color.HSVToRGB(H, 0.75f, 0.75f);
+					borderRenderers[i].color = new Color(1f, 0.25f, 0.25f);
+					borderRenderers[i].enabled = true;
+				}
+            }
+            else if (isSelected)
             {
-                if (isActivated || isZoneActivated)
+                for (int i = 0; i < borderRenderers.Length; i++)
                 {
-                    for (int i = 0; i < borderRenderers.Length; i++)
-                    {
-                        borderRenderers[i].enabled = false;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < borderRenderers.Length; i++)
-                    {
-                        borderRenderers[i].enabled = true;
-                    }
+                    Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
+					spriteRenderers[i].color = originalColor;
+                    borderRenderers[i].color = Color.white;
+                    borderRenderers[i].enabled = true;
                 }
             }
             else
             {
                 for (int i = 0; i < borderRenderers.Length; i++)
                 {
+                    Color.RGBToHSV(spriteRenderers[i].color, out float H, out float S, out float V);
+					spriteRenderers[i].color = originalColor;
                     borderRenderers[i].enabled = false;
                 }
             }
@@ -148,7 +161,7 @@ public abstract class Enemy : MonoBehaviour {
 		transform.rotation = targetRotation;
 	}
 
-	void OnTriggerEnter2D(Collider2D collision) {
+	public void OnTriggerEnter2D(Collider2D collision) {
 		collisions.Add(collision);
 		CheckCollisions();
 	}
