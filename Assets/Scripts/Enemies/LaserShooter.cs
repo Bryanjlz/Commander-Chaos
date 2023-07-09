@@ -67,11 +67,14 @@ public class LaserShooter : Enemy {
 				if (Time.time - laserStateStartTime > laserChargeTime) {
 					state = LaserState.FIRING;
 					laserStateStartTime = Time.time;
-				}
+                    rb.velocity = rb.velocity / 3;
+                }
 				break;
 			case LaserState.FIRING:
-				// Done Firing
-				if(Time.time - laserStateStartTime > laserSustainTime) {
+				speed = 0;
+                // Done Firing
+                turnSpeed = 1.5f;
+                if (Time.time - laserStateStartTime > laserSustainTime) {
 					state = LaserState.COOLDOWN;
 					laserStateStartTime = Time.time;
 					laserTarget = player.transform.position;
@@ -79,11 +82,10 @@ public class LaserShooter : Enemy {
 				break;
 			case LaserState.COOLDOWN:
 				// Done cooldown
+				turnSpeed = 0.5f;
 				if (Time.time - laserStateStartTime > laserCooldownTime) {
-					laserRange -= movePerLaser;
 					state = LaserState.NONE;
 					laserStateStartTime = Time.time;
-					speed = 1;
 				}
 				break;
 		}

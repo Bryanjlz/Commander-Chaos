@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 1, g: 0.22745098, b: 0.4392157, a: 1}
+  m_Color: {r: 0.9811321, g: 0.33784264, b: 0.97492206, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   rb: {fileID: 7239406462258756729}
   isHovered: 0
   isSelected: 0
+  isScrambled: 0
   collisions: []
   borderRenderers:
   - {fileID: 2538285013223966485}

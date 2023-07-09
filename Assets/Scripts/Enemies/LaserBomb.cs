@@ -26,7 +26,7 @@ public class LaserBomb : Enemy {
 		SetTarget(target);
 
 		// random spin
-		rb.angularVelocity = Random.Range(30f, 60f) * Mathf.Pow(-1, Random.Range(0, 1));
+		rb.angularVelocity = Random.Range(30f, 45f) * Mathf.Pow(-1, Random.Range(0, 1));
 	}
 
 	private Vector2 FindTarget() {
@@ -65,22 +65,23 @@ public class LaserBomb : Enemy {
 				}
 				break;
 			case LaserState.CHARGING:
-				// Done Charging
-				if (Time.time - laserStateStartTime > laserChargeTime) {
+                // Done Charging
+                if (Time.time - laserStateStartTime > laserChargeTime) {
 					state = LaserState.FIRING;
 					laserStateStartTime = Time.time;
-				}
+                    rb.angularVelocity = 15;
+                }
 				break;
 			case LaserState.FIRING:
-				// Done Firing
-				if (Time.time - laserStateStartTime > laserSustainTime) {
+                // Done Firing
+                if (Time.time - laserStateStartTime > laserSustainTime) {
 					state = LaserState.STOPPING;
 					laserStateStartTime = Time.time;
 				}
 				break;
 			case LaserState.STOPPING:
-				// Done cooldown
-				if (Time.time - laserStateStartTime > 0.2f) {
+                // Done cooldown
+                if (Time.time - laserStateStartTime > 0.2f) {
 					health = 0;
 				}
 				break;
@@ -102,8 +103,8 @@ public class LaserBomb : Enemy {
 	public override void PlayerActivate() {
 		state = LaserState.FIRING;
 		laserStateStartTime = Time.time;
-		rb.angularVelocity = 0;
-		foreach (Laser laser in lasers) {
+        rb.angularVelocity = 15;
+        foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
 	}

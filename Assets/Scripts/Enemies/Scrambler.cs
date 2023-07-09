@@ -48,8 +48,8 @@ public class Scrambler : Enemy
 	public void FixedUpdate()
 	{
 
-		rb.AddTorque(90.0f);
-		if (Mathf.Abs(rb.angularVelocity) >= 720.0f)
+		rb.AddTorque(10.0f);
+		if (Mathf.Abs(rb.angularVelocity) >= 120.0f)
 		{
 			rb.angularVelocity = rb.angularVelocity / Mathf.Abs(rb.angularVelocity);
 		}
