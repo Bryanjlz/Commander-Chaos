@@ -30,6 +30,12 @@ public class Laser : MonoBehaviour {
 		state = LaserState.CHARGING;
 	}
 
+	public void FireLaserEarly() {
+		laserStartTime = Time.time;
+		sprite.color = Color.white;
+		state = LaserState.FIRING;
+	}
+
 	// Update is called once per frame
 	void Update() {
 		float timeSinceLaserStart = Time.time - laserStartTime;
@@ -43,21 +49,23 @@ public class Laser : MonoBehaviour {
 					sprite.color = laserIndicator;
 				}
 				if (timeSinceLaserStart >= laserChargeTime) {
+					laserStartTime = Time.time;
 					sprite.color = Color.white;
 					state = LaserState.FIRING;
 				}
 				break;
 			case LaserState.FIRING:
 				collider.enabled = true;
-				sprite.color = Color.Lerp(Color.white, laserOn, (timeSinceLaserStart - laserChargeTime) / 0.1f);
-				if (timeSinceLaserStart >= laserChargeTime + laserSustainTime) {
+				sprite.color = Color.Lerp(Color.white, laserOn, timeSinceLaserStart / 0.1f);
+				if (timeSinceLaserStart >= laserSustainTime) {
+					laserStartTime = Time.time;
 					state = LaserState.STOPPING;
 				}
 				break;
 			case LaserState.STOPPING:
 				collider.enabled = false;
-				sprite.color = Color.Lerp(laserOn, Color.clear, (timeSinceLaserStart - laserChargeTime - laserSustainTime) / 0.1f);
-				if (timeSinceLaserStart >= laserChargeTime + laserSustainTime + 0.1f) {
+				sprite.color = Color.Lerp(laserOn, Color.clear, timeSinceLaserStart / 0.1f);
+				if (timeSinceLaserStart >= 0.1f) {
 					collider.enabled = false;
 					sprite.enabled = false;
 					state = LaserState.NONE;

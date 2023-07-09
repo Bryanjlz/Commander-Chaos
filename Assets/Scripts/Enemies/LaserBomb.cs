@@ -30,7 +30,7 @@ public class LaserBomb : Enemy {
 		laserStartTime = Time.time;
 
 		// random spin
-		rb.angularVelocity = Random.Range(15f, 60f) * Mathf.Pow(-1, Random.Range(0, 1));
+		rb.angularVelocity = Random.Range(30f, 60f) * Mathf.Pow(-1, Random.Range(0, 1));
 	}
 
 	private Vector2 FindTarget() {
@@ -63,6 +63,7 @@ public class LaserBomb : Enemy {
 			
 			// Start bomb
 			if (Vector2.Distance(transform.position, target) < 1f) {
+				isInteractable = true;
 				StartLaser();
 			}
 		}
@@ -84,6 +85,9 @@ public class LaserBomb : Enemy {
 	}
 
 	public override void PlayerActivate() {
+		foreach (Laser laser in lasers) {
+			laser.FireLaserEarly();
+		}
 	}
 
 	public override void ZoneActivate() {
