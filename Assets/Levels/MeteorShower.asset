@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 3
   cooldown: 0
-  minTime: 60
+  minTime: 120
   maxTime: 0
   director: {fileID: 6045129376529520863, guid: 2fdc43675e2c2fc40bc50838a2ae1b4f, type: 3}

@@ -540,7 +540,6 @@ MonoBehaviour:
   isInteractable: 1
   health: 1
   scoreGiven: 25
-  impulseSource: {fileID: 0}
   speed: 1
   rb: {fileID: 5575259226151298398}
   isHovered: 0
@@ -557,7 +556,7 @@ MonoBehaviour:
   turnSpeed: 0.5
   movePerLaser: 4
   laser: {fileID: 6607446400832695044}
-  laserRange: 8
+  laserRange: 5
   laserChargeTime: 3
   laserSustainTime: 1
   laserCooldownTime: 2

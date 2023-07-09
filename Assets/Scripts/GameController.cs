@@ -15,16 +15,18 @@ public class GameController : MonoBehaviour {
 	public float timeStart;
 
 	void Start() {
+		// set everything's gameref to this, just in case
+		Time.timeScale = 1;
+		player.gameRef = this;
+
 		if (currentEnemies == null) {
 			currentEnemies = new List<Enemy>();
 		}
 		enemyTimeline = new List<(float time, EnemyType enemyType)>();
 
-		// set everything's gameref to this, just in case
-		player.gameRef = this;
-
 		timeStart = Time.time;
 		LevelTracker.self.timeStart = timeStart;
+		LevelTracker.self.score = 0;
 
 		LevelTracker.self.BeginLevel();
 	}

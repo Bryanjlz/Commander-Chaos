@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
 
 	void Kill()
 	{
+		Time.timeScale = 0;
 		gameRef.onPlayerKill();
 	}
 

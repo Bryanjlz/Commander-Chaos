@@ -19,7 +19,7 @@ public class RestartUI : MonoBehaviour
 
 	public void RestartLevel()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void GoBack()

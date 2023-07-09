@@ -46,7 +46,7 @@ public class LaserBomb : Enemy {
 
 		int times = 0;
 		while (!foundTarget) {
-			targetPos = new Vector2(Random.Range(-10, 10), Random.Range(-4, 4));
+			targetPos = new Vector2(Random.Range(-4, 4), Random.Range(-4, 4));
 			Vector2 deltaVec = targetPos - (Vector2)transform.position;
 			RaycastHit2D hit = Physics2D.BoxCast(transform.position, new Vector2(3, 3), 0f, deltaVec, deltaVec.magnitude, LayerMask.GetMask("Player"));
 			if (!hit) {

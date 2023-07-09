@@ -10,6 +10,6 @@ public class ScoreText : MonoBehaviour
 
 	// Update is called once per frame
 	void Update() {
-		text.text = "score: " + LevelTracker.self.score;
+		text.text = "SCORE: " + LevelTracker.self.score;
 	}
 }
