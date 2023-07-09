@@ -69,7 +69,7 @@ public class LaserBomb : Enemy {
 		}
 
 		// Kill bomb after detonation
-		if (startLaser && Time.time - laserStartTime > laserChargeTime + laserSustainTime + 0.5f) {
+		if (startLaser && Time.time - laserStartTime > laserChargeTime + laserSustainTime + 0.2f) {
 			health = 0;
 		}
 	}
@@ -85,6 +85,7 @@ public class LaserBomb : Enemy {
 	}
 
 	public override void PlayerActivate() {
+		laserChargeTime = laserChargeTime - (Time.time - laserStartTime);
 		foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
