@@ -12,10 +12,8 @@ public class LaserBomb : Enemy {
 	float laserChargeTime;
 	[SerializeField]
 	float laserSustainTime;
-	private float laserStartTime;
-
-	private bool startLaser;
-	private Vector2 startPos;
+	private float laserStateStartTime;
+	private LaserState state = LaserState.NONE;
 	private Vector2 target;
 
 	public override void Setup(Player player, GameController gameRef) {
@@ -23,13 +21,12 @@ public class LaserBomb : Enemy {
 		foreach (Laser laser in lasers) {
 			laser.Setup(laserSustainTime, laserChargeTime);
 		}
-		startPos = gameObject.transform.position;
 		target = FindTarget();
 
 		SetTarget(target);
 
 		// random spin
-		rb.angularVelocity = Random.Range(30f, 60f) * Mathf.Pow(-1, Random.Range(0, 1));
+		rb.angularVelocity = Random.Range(30f, 45f) * Mathf.Pow(-1, Random.Range(0, 1));
 	}
 
 	private Vector2 FindTarget() {
@@ -53,45 +50,72 @@ public class LaserBomb : Enemy {
 	}
 
 	public override void DefaultBehaviour() {
-		// Move
-		if (!startLaser) {
-			rb.AddForce(unitVel * speed);
-			if (rb.velocity.magnitude >= speed) {
-				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
-			}
-			
-			// Start bomb
-			if (Vector2.Distance(transform.position, target) < 1f) {
-				isInteractable = true;
-				StartLaser();
-			}
+		switch (state) {
+			case LaserState.NONE:
+				// Move
+				rb.AddForce(unitVel * speed);
+				if (rb.velocity.magnitude >= speed) {
+					rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
+				}
+
+				// Start bomb
+				if (Vector2.Distance(transform.position, target) < 1f) {
+					isInteractable = true;
+					StartLaser();
+				}
+				break;
+			case LaserState.CHARGING:
+                // Done Charging
+                if (Time.time - laserStateStartTime > laserChargeTime) {
+					state = LaserState.FIRING;
+					laserStateStartTime = Time.time;
+                    rb.angularVelocity = 15;
+                }
+				break;
+			case LaserState.FIRING:
+                // Done Firing
+                if (Time.time - laserStateStartTime > laserSustainTime) {
+					state = LaserState.STOPPING;
+					laserStateStartTime = Time.time;
+				}
+				break;
+			case LaserState.STOPPING:
+                // Done cooldown
+                if (Time.time - laserStateStartTime > 0.2f) {
+					health = 0;
+				}
+				break;
 		}
 
-		// Kill bomb after detonation
-		if (startLaser && Time.time - laserStartTime > laserChargeTime + laserSustainTime + 0.2f) {
-			health = 0;
-		}
 	}
 
 	private void StartLaser() {
-		startLaser = true;
+		state = LaserState.CHARGING;
+		laserStateStartTime = Time.time;
 		speed = 0;
 		rb.velocity = Vector2.zero;
 		rb.totalForce = Vector2.zero;
-		laserStartTime = Time.time;
 		foreach (Laser laser in lasers) {
-			laser.StartLaser(laserStartTime);
+			laser.StartLaser(laserStateStartTime);
 		}
 	}
 
 	public override void PlayerActivate() {
-		laserChargeTime = Time.time - laserStartTime;
-		rb.angularVelocity = 0;
-		foreach (Laser laser in lasers) {
+		state = LaserState.FIRING;
+		laserStateStartTime = Time.time;
+        rb.angularVelocity = 15;
+        foreach (Laser laser in lasers) {
 			laser.FireLaserEarly();
 		}
 	}
 
 	public override void ZoneActivate() {
+	}
+
+	private enum LaserState {
+		CHARGING,
+		FIRING,
+		STOPPING,
+		NONE
 	}
 }

@@ -45,7 +45,7 @@ public class Charger : Enemy {
 
 		if (!isTurning) {
 			// Move
-			rb.AddForce(unitVel * speed * 1.5f);
+			rb.AddForce(unitVel * speed * 1.2f);
 			if (!isCharging && rb.velocity.magnitude >= speed) {
 				rb.velocity = rb.velocity / rb.velocity.magnitude * speed;
 			}

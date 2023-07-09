@@ -44,7 +44,28 @@ public class HealingKit : Enemy
 		}
 	}
 
-	public override void ZoneActivate()
+    public override void BorderChange()
+    {
+        if (!isInteractable || isScrambled)
+        {
+			for (int i = 0; i < borderRenderers.Length; i++)
+			{
+				spriteRenderers[i].color = new Color(0.65f, 0.89f, 0.64f);
+			}
+		}
+        else if (isSelected)
+        {
+            for (int i = 0; i < borderRenderers.Length; i++)
+            {
+                spriteRenderers[i].color = originalColor;
+                borderRenderers[i].color = Color.white;
+                borderRenderers[i].enabled = true;
+            }
+        }
+    }
+        
+
+    public override void ZoneActivate()
 	{
 
 	}
